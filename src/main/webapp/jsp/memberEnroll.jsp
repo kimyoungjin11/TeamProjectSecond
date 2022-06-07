@@ -92,17 +92,15 @@
             </div>
           </div>
 
+		<div>
+		<label for="phone">휴대폰번호</label>
+		<input type="text" id="phone" name="phone">
+		</div>
           <!-- div class="mb-3">
             <label for="address2">비밀번호 확인<span class="text-muted">&nbsp;(필수 아님)</span></label>
             <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
           </di -->
 		
-		<div>
-		<label for="phone">휴대폰번호</label>
-		<input type="text" id="phone" name="phone">
-		
-		
-		</div>
          
            </select>
          
