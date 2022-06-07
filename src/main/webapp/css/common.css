@@ -27,7 +27,8 @@ header {
 }
 
 #header_wrap {
-	padding-top: 10px;
+	padding:10px 0px 0px 0px;
+	height:100%;
 	width: 1024px;
 	margin: 0 auto;
 }
@@ -39,9 +40,7 @@ header {
 
 
 .dropbtn {
-  
   color: white;
-  padding: 16px;
   font-size: 16px;
   border: none;
 }
@@ -49,6 +48,9 @@ header {
 .dropdown {
   position: relative;
   display: inline-block;
+  width:40px;
+  height:40px;
+  padding:10px 3px 3px 3px;
 }
 
 .dropdown-content {
@@ -61,8 +63,10 @@ header {
 }
 
 .dropdown-content a {
+  width:100%;
+  height:100%;
   color: black;
-  padding: 12px 16px;
+  padding: 3px;
   text-decoration: none;
   display: block;
 }
@@ -74,15 +78,17 @@ header {
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 
+nav {
+	margin-right: 80px;
+}
 
 #btn_menu {
 	position: absolute;
 }
 #btn_menu img {
 	display: inline-block;
+	margin:3px;
 	width: 30px;
-	margin-top: 15px;
-	margin-right: 80px;
 }
 
 
@@ -90,7 +96,7 @@ header {
 
 #cateogry{
 	position: absolute;
-	top: 30px;
+	top: 10px;
 	display: inline;
 	width: 300px;
 	background-color: #ececec;
@@ -149,13 +155,13 @@ header {
 }
 #btn_mypage img {
 	width: 27px;
-	margin-right: 3px;
+	margin-right: 5px;
 	
 }
 
 #btn_logout img {
 	height: 25px;
-	margin-right: 3px;
+	margin-right: 5px;
 }
 
 
@@ -176,6 +182,9 @@ section h1 {
 
 /*footer*/
 footer {
+	position:absolute;
+	width:100%;
+	bottom:0;
     background-color:#eaeaea;
 }
 #footer_wrap {
