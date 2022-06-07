@@ -11,7 +11,7 @@ import com.kosta.project.util.DBUtil;
 
 public class MemberDAO {
 	static final String SQL_SELECT_BYID = "select * from tbl_user where user_id=?";
-	static final String SQL_INSERT_MEMBER = "insert into tbl_user values(?,?,?,?,?,?,?)";
+	static final String SQL_INSERT_MEMBER = "insert into tbl_user values(?,?,?,?,sysdate,?,'user')";
 	
 	Connection conn;
 	Statement st;
@@ -47,9 +47,9 @@ public class MemberDAO {
 			pst.setString(2, member.getUserName());
 			pst.setString(3, member.getUserPassword());
 			pst.setString(4, member.getNickName());
-			pst.setDate(5, member.getSignDate());
-			pst.setString(6, member.getPhone());
-			pst.setString(7, member.getUserRole());
+			pst.setString(5, member.getPhone());
+			
+			
 			
 			result = pst.executeUpdate();
 		
