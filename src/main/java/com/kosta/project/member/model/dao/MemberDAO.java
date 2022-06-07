@@ -11,10 +11,11 @@ import com.kosta.project.util.DBUtil;
 
 public class MemberDAO {
 	static final String SQL_SELECT_BYID = "select * from tbl_user where user_id=?";
+	static final String SQL_INSERT_MEMBER = "insert into tbl_user values(?,?,?,?,?,?,?)";
 	
 	Connection conn;
 	Statement st;
-	PreparedStatement pst; //바인딩변수를 지원한다.
+	PreparedStatement pst; 
 	ResultSet rs;
 	int result;
 	
@@ -23,7 +24,7 @@ public class MemberDAO {
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_BYID);
-			pst.setString(1, userId);//sql첫번쨰 ?에 를 넣는다
+			pst.setString(1, userId);
 			rs=pst.executeQuery();
 			while(rs.next()) {
 				emp = makeEmp(rs);
@@ -35,6 +36,34 @@ public class MemberDAO {
 		}
 		return emp;
 		}
+	
+	public int insertMember(Member member) {
+		int result =0;
+		
+		conn = DBUtil.getConnection();
+		try {
+			pst = conn.prepareStatement(SQL_INSERT_MEMBER);
+			pst.setString(1, member.getUserId());
+			pst.setString(2, member.getUserName());
+			pst.setString(3, member.getUserPassword());
+			pst.setString(4, member.getNickName());
+			pst.setDate(5, member.getSignDate());
+			pst.setString(6, member.getPhone());
+			pst.setString(7, member.getUserRole());
+			
+			result = pst.executeUpdate();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return result;
+	}
+		
+		
+	
 	
 	private Member makeEmp(ResultSet rs) throws SQLException {
 		 Member emp = new Member();
