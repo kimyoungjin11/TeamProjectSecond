@@ -1,0 +1,140 @@
+.board-wrapper{
+	width:1024px;
+	margin:auto;
+}
+
+.board-wrapper .category{
+	height:80px;
+}
+
+.board-wrapper .title-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    height: 500px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+    border-width: 1px 0px 1px;
+    padding: 30px;
+}
+
+.board-wrapper .title-wrapper #item-img {
+    height: 420px;
+    width: 420px;
+    flex-grow: 0;
+    margin-right: 30px;
+    background-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+}
+.board-wrapper .title-wrapper #item-img #img-bag {
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+.board-wrapper .title-wrapper #item-img #img-bag img {
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.board-wrapper .title-wrapper #item-info {
+    flex-grow: 1;
+}
+
+.board-wrapper .title-wrapper #item-info #item-title {
+    border-style: solid;
+    border-color: rgb(221, 221, 221);
+    border-image: initial;
+    border-width: 0px 0px 1px;
+}
+
+.board-wrapper .title-wrapper #item-info #item-title span {
+    font-size: 25px;
+    display: inline-block;
+    margin: 0px 0px 30px;
+}
+
+.board-wrapper .title-wrapper #item-info #item-title #item-date{
+	float:right;
+}
+
+.board-wrapper .title-wrapper #item-info #item-title #item-price {
+    font-size: 35px;
+    margin: 0px 0px 30px;
+}
+
+.board-wrapper .title-wrapper #item-info #item-ect {
+    margin: 30px 0px;
+}
+
+.board-wrapper .title-wrapper #item-info #item-ect .item-ect-class {
+    margin-right: 10px;
+}
+
+.board-wrapper .title-wrapper #item-info #item-ect .item-ect-class img {
+    width: 30px;
+    height: 30px;
+}
+
+.board-wrapper .title-wrapper #item-info #item-sssss {
+    height: 150px;
+}
+
+
+element.style {
+}
+
+.board-wrapper .title-wrapper #item-info #item-buy #heart {
+    background-color: red;
+}
+
+.board-wrapper .title-wrapper #item-info #item-buy button {
+    width: 220px;
+    height: 56px;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 5px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+
+.board-wrapper .title-wrapper #item-info #item-buy {
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-wrapper .title-wrapper #item-info #item-buy #heart {
+    background-color: red;
+}
+
+.board-wrapper .title-wrapper #item-info #item-buy img {
+    width: 30px;
+    height: 30px;
+    filter: invert(99%) sepia(1%) saturate(0%) hue-rotate(269deg) brightness(115%) contrast(100%);
+}
+
+.board-wrapper .title-wrapper #item-info #item-buy #buy {
+    background-color: rgb(255, 234, 0);
+}
+
+.board-wrapper .board-contents{
+	margin-top:50px;
+}
+
+main .mainContainer .card{
+    font-size:14px;
+}
+
+main .mainContainer .card #reply--box .d-flex{
+    font-size:14px;
+}
