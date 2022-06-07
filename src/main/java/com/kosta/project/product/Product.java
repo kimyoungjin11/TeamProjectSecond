@@ -1,38 +1,38 @@
-package com.kosta.project.board;
+package com.kosta.project.product;
 
 import java.sql.Date;
 
-public class Board {
-	private long boardId;
-	private String boardTitle;
-	private String boardContext;
+public class Product {
+	private long productId;
+	private String productTitle;
+	private String productContext;
 	private int wishCount;
 	private int price;
 	private Date reg_date;
-	private String boardStatus;
+	private String productStatus;
 	private int joinNumber;
 	private int userId;
 	private int category;
 	private int imageId;
 	
 	
-	public long getBoardId() {
-		return boardId;
+	public long getproductId() {
+		return productId;
 	}
-	public void setBoardId(long boardId) {
-		this.boardId = boardId;
+	public void setproductId(long productId) {
+		this.productId = productId;
 	}
-	public String getBoardTitle() {
-		return boardTitle;
+	public String getproductTitle() {
+		return productTitle;
 	}
-	public void setBoardTitle(String boardTitle) {
-		this.boardTitle = boardTitle;
+	public void setproductTitle(String productTitle) {
+		this.productTitle = productTitle;
 	}
-	public String getBoardContext() {
-		return boardContext;
+	public String getproductContext() {
+		return productContext;
 	}
-	public void setBoardContext(String boardContext) {
-		this.boardContext = boardContext;
+	public void setproductContext(String productContext) {
+		this.productContext = productContext;
 	}
 	public int getWishCount() {
 		return wishCount;
@@ -52,11 +52,11 @@ public class Board {
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	public String getBoardStatus() {
-		return boardStatus;
+	public String getproductStatus() {
+		return productStatus;
 	}
-	public void setBoardStatus(String boardStatus) {
-		this.boardStatus = boardStatus;
+	public void setproductStatus(String productStatus) {
+		this.productStatus = productStatus;
 	}
 	public int getJoinNumber() {
 		return joinNumber;
@@ -86,9 +86,9 @@ public class Board {
 	
 	@Override
 	public String toString() {
-		return "Board [boardId=" + boardId + ", boardTitle=" + boardTitle + ", boardContext=" + boardContext
-				+ ", wishCount=" + wishCount + ", price=" + price + ", reg_date=" + reg_date + ", boardStatus="
-				+ boardStatus + ", joinNumber=" + joinNumber + ", userId=" + userId + ", category=" + category + "]";
+		return "product [productId=" + productId + ", productTitle=" + productTitle + ", productContext=" + productContext
+				+ ", wishCount=" + wishCount + ", price=" + price + ", reg_date=" + reg_date + ", productStatus="
+				+ productStatus + ", joinNumber=" + joinNumber + ", userId=" + userId + ", category=" + category + "]";
 	}
 	
 	
