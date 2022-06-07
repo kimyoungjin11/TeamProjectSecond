@@ -7,16 +7,14 @@
 <title>함께하면 가벼운 소비, N분의1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel=stylesheet href="../css/reset.css">
 <link rel=stylesheet href="../css/common.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 /*category open*/
-$(function(){
+/* $(function(){
 	var $menuBtn = $("#btn_menu");
 	var $category = $("#category");
 	
@@ -28,7 +26,7 @@ $(function(){
 		$category.css('display','none');
 	});
 });
-	
+	 */
 	
 </script>
 </head>
@@ -41,10 +39,10 @@ $(function(){
 		<header>
 			<div id="header_wrap">
 				<div id="header_left">
-					<nav>
-						<a href="" id="btn_menu"><img src="../img/header/btn_menu.png"
+					<nav class="dropdown">
+						<a class="dropbtn" href="" id="btn_menu"><img src="../img/header/btn_menu.png"
 						alt="menu"></a>
-						<div id="category" class="skip">
+						<div class="dropdown-content" id="category" class="skip">
 							<ul>
 								<li><a href="">OTT구독</a></li>
 								<li><a href="">여행상품</a></li>
@@ -96,9 +94,9 @@ $(function(){
                             <li><a href="#">이메일무단수집거부</a></li>
                             <li><a href="#">제휴/제안</a></li>
                         </ul>
-                        <a href="#"><img src="../img/header/logo.png" alt="n분의1"></a>
                     </div>
                     <div id="footer_bottom">
+                    	<a href="#"><img src="../img/header/logo.png" alt="n분의1"></a>
                         <p>서울사업본부 : 서울특별시 금천구 가산동 가산디지털1로 70 (TEL. 02-6000-1111)</p>
                         <p>Copyright&copy;N분의1 All rights reserved.</p>
                     </div>
