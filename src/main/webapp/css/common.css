@@ -31,16 +31,26 @@ header {
 	width:300px;
 	float: left;
 }
+
+
+nav {
+	position: relative;
+}
+
+#btn_menu {
+	position: absolute;
+}
 #btn_menu img {
-	float: left;
-	display: inline;
+	display: inline-block;
 	width: 30px;
 	margin-top: 15px;
 	margin-right: 80px;
 }
 
 #cateogry{
-	display: inline-block;
+	position: absolute;
+	top: 30px;
+	display: inline;
 	width: 300px;
 	background-color: #ececec;
 }
@@ -75,19 +85,26 @@ header {
 #btn_search img {
 	float: left;
 	width: 20px;
+	color: black;
 }
 
 #header_right {
+	margin-top:15px;
 	float: right;
+	
 }
-
-#btn_mypage img {
-	width: 25px;
+#btn_mypage {
 	margin-right: 15px;
+}
+#btn_mypage img {
+	width: 27px;
+	margin-right: 3px;
+	
 }
 
 #btn_logout img {
-	width: 25px;
+	height: 25px;
+	margin-right: 3px;
 }
 
 
