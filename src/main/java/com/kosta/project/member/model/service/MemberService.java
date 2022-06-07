@@ -9,4 +9,10 @@ public class MemberService {
 	public Member selectOneMember(String userId) {
 		return memberDAO.selectOneMember(userId);
 		}
+
+
+	public int insertMember(Member member) {
+		return memberDAO.insertMember(member);
+	}
+	
 }

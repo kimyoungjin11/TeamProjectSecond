@@ -91,7 +91,7 @@ a {
 		</form>
 		<div id="link">
 			<a href="">아이디/비밀번호 찾기</a>
-			<a href="signup.jsp">회원가입</a>
+			<a href="${path}/member/memberEnroll">회원가입</a>
 		</div>
 	</div>
 </body>
