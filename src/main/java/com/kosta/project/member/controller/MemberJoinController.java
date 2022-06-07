@@ -25,10 +25,11 @@ public class MemberJoinController extends HttpServlet {
 		Member member = makeEmp(request);
 		MemberService service = new MemberService();
 		int result = service.insertMember(member);
-		request.setAttribute("message", result>0?"직원정보 insert성공":"직원정보 insert실패");
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("result.jsp");
-		rd.forward(request, response);
+		String path = request.getContextPath();
+		String msg = result>0 ? "가입을 환영합니다.!": "가입에 실패하셨습니다.";
+		request.setAttribute("message", msg);
+		response.sendRedirect(path+"/jsp/login.jsp");
+		
 	}
 	
 	private Member makeEmp(HttpServletRequest request) {
