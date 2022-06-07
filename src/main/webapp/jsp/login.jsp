@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel=stylesheet href="../css/reset.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 * { 
 	text-align:center;
@@ -81,9 +83,10 @@ a {
 	<div id="wrap">
 		<a href="index.jsp"><h1>N분의1</h1></a>
 		<p>함께하면 가벼운 소비,<br>세상의 모든 소비를 나눠보세요.</p>
-		<form action="login.do" method="post">
-				<input class="input_login" type="text" name="user_id" placeholder="이메일주소를 입력하세요.">
-				<input class="input_login" type="password" name="user_pw" placeholder="비밀번호를 입력하세요.">
+		<c:set var= "path" value="${pageContext.request.contextPath }"/>
+		<form  method="post" action="${path}/member/login">
+				<input class="input_login" type="text" name="userId" id="userId" placeholder="이메일주소를 입력하세요.">
+				<input class="input_login" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요.">
 				<input class="btn_login" type="submit" value="로그인">
 		</form>
 		<div id="link">
