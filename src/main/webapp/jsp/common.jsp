@@ -48,13 +48,17 @@
 					</div>
 				</div>
 				<div id="header_right">
-					<a href="" id="btn_mypage"><img src="../img/header/mypage.png"
-						alt="mypage">마이페이지</a> <a href="" id="btn_logout"><img
-						src="../img/header/logout.png" alt="logout">로그아웃</a>
+
+					<c:if test="${loginMember != null}">
+					<c:set var= "path" value="${pageContext.request.contextPath }"/>
+					<a id="btn_mypage"><img src="../img/header/mypage.png" alt="mypage">마이페이지</a> 
+					
+					<a  href="${path}/member/logout" id="btn_logout"><img src="../img/header/logout.png" alt="logout">로그아웃</a>
+				   </c:if>
+	
 				</div>
 			</div>
 		</header>
-		
 		<!-- SECTION -->
 		
 		<section>
