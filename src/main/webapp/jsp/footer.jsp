@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,61 +15,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-	<!-- TOP버튼 -->
-
-	<span id="tothetop"><img src="../img/header/top.png" alt="top"></span>
-	<div id="wrap">
-		<!-- HEADER -->
-		<header>
-			<div id="header_wrap">
-				<div id="header_left">
-					<nav class="dropdown">
-						<a class="dropbtn" href="" id="btn_menu"><img src="../img/header/btn_menu.png"
-						alt="menu"></a>
-						<div class="dropdown-content" id="category" class="skip">
-							<ul>
-								<li><a href="">OTT구독</a></li>
-								<li><a href="">여행상품</a></li>
-								<li><a href="">생활용품</a></li>
-								<li><a href="">식품</a></li>
-								<li><a href="">여성의류</a></li>
-								<li><a href="">남성의류</a></li>
-							</ul>
-						</div>
-					</nav>
-					<a href="" id="logo"><img src="../img/header/logo.png" alt="logo"></a>
-				</div>
-				<div id="header_center">
-					<div id="search">
-						<form action="search.do">
-							<input type="text" placeholder="검색어를 입력하세요." name="input_search">
-							<a href="" id="btn_search"><img src="../img/header/search.png"
-								alt="search"></a>
-						</form>
-					</div>
-				</div>
-				<div id="header_right">
-
-					<c:if test="${loginMember != null}">
-					<c:set var= "path" value="${pageContext.request.contextPath }"/>
-					<a id="btn_mypage"><img src="../img/header/mypage.png" alt="mypage">마이페이지</a> 
-					
-					<a  href="${path}/member/logout" id="btn_logout"><img src="../img/header/logout.png" alt="logout">로그아웃</a>
-				   </c:if>
-	
-				</div>
-			</div>
-		</header>
-		<!-- SECTION -->
-		
-		<section>
-			<h1>물품등록</h1>
-		
-		
-		</section>
-		
-		
-		<!-- FOOTER -->
 		<footer>
                 <div id="footer_wrap">
                     <div id="footer_top">
@@ -88,7 +34,6 @@
                         <p>Copyright&copy;N분의1 All rights reserved.</p>
                     </div>
                 </div>  
-            </footer>
-	</div>
+        </footer>
 </body>
 </html>
