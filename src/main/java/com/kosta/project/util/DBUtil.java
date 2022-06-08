@@ -15,8 +15,8 @@ public class DBUtil {
 //			initContext = new InitialContext();
 //			Context envContext  = (Context)initContext.lookup("java:/comp/env");
 //			DataSource ds = (DataSource)envContext.lookup("jdbc/myoracle");//JNDIë°©ì‹
-//			conn = ds.getConnection();//Tomcat?´ connection pooling?— ?—°ê²°í•œ connection?—´ê¸?
-//			System.out.println(conn + "¼º°ø");
+//			conn = ds.getConnection();//Tomcat?ï¿½ï¿½ connection pooling?ï¿½ï¿½ ?ï¿½ï¿½ê²°í•œ connection?ï¿½ï¿½ï¿½?
+//			System.out.println(conn + "ï¿½ï¿½ï¿½ï¿½");
 //		} catch (NamingException | SQLException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -26,7 +26,7 @@ public class DBUtil {
 	
 	public static Connection getConnection() {
 		Connection conn = null;
-		String url="jdbc:oracle:thin:@db20220602160542_high?TNS_ADMIN=C:/Users/user/Downloads/wallet/";
+		String url="jdbc:oracle:thin:@db20220602160542_high?TNS_ADMIN=C:/Users/ijbms/Desktop/secondProject/Wallet_DB20220602160542/";
 		String userid="admin" , password= "KostaKosta33";
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
