@@ -13,9 +13,10 @@ public class ProductService {
 		List<Product> productList = productDAO.selectAllProduct();
 		return productList;
 	}
-	
+
 	//상품 등록
 	public int insertProduct(Product product, String userId) {
 		return productDAO.productInsert(product, userId);
 	}
+
 }
