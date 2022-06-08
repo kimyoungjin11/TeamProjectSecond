@@ -12,9 +12,6 @@
 <link rel=stylesheet href="css/boardList.css">
 </head>
 <body>
-	<%
-	String id = null;
-	%>
 	<div class="container">
 		<div>
 			cate

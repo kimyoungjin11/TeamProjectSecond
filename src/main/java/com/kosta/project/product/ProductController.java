@@ -19,6 +19,7 @@ public class ProductController extends HttpServlet {
 	ProductService productService;
 	Product product;
 	
+	
 	public void init() throws ServletException{
 		productService = new ProductService();
 	}

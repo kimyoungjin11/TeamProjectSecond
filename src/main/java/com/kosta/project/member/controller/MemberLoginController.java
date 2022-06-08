@@ -53,7 +53,7 @@ public class MemberLoginController extends HttpServlet {
                 
 //               String location = request.getContextPath() + "/";
 //                response.sendRedirect(location);
-                request.getRequestDispatcher("/jsp/common.jsp")
+                request.getRequestDispatcher("/jsp/header.jsp")
                 .forward(request, response);   
 
             
