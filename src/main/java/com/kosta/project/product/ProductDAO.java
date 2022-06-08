@@ -44,7 +44,7 @@ static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATE
 			while(rs.next()) {
 				int productId = rs.getInt("product_Id");
 				String productTitle = rs.getString("Title");
-				String productContext = rs.getString("Context");
+				String productContent = rs.getString("Content");
 				int wishCount = rs.getInt("wish_Count");
 				int price = rs.getInt("price");
 				Date reg_date = rs.getDate("reg_date");
@@ -56,7 +56,7 @@ static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATE
 				Product product = new Product();
 				product.setproductId(productId);
 				product.setproductTitle(productTitle);
-				product.setproductContext(productContext);
+				product.setproductContent(productContent);
 				product.setWishCount(wishCount);
 				product.setPrice(price);
 				product.setReg_date(reg_date);
@@ -96,7 +96,7 @@ static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATE
 				pst.setString(1, userId); //현재 세션에서 user id 가져오기
 				pst.setInt(2, product.getCategory());
 				pst.setString(3, product.getproductTitle());
-				pst.setString(4, product.getproductContext());
+				pst.setString(4, product.getproductContent());
 				pst.setInt(5, product.getPrice());
 				pst.setInt(6, product.getJoinNumber());
 		
