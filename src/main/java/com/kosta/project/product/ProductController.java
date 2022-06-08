@@ -34,7 +34,7 @@ public class ProductController extends HttpServlet {
 		String nextPage = "";
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		String action = request.getPathInfo();
+		String action = request.getServletPath();
 		System.out.println("action:" + action);
 		try {
 			List<Product> productList = new ArrayList<Product>();
