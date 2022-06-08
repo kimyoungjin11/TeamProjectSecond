@@ -3,7 +3,7 @@ package com.kosta.project.product;
 import java.sql.Date;
 
 public class Product {
-	private long productId;
+	private int productId;
 	private String productTitle;
 	private String productContext;
 	private int wishCount;
@@ -11,15 +11,35 @@ public class Product {
 	private Date reg_date;
 	private String productStatus;
 	private int joinNumber;
-	private int userId;
+	private String userId;
 	private int category;
 	private int imageId;
 	
 	
-	public long getproductId() {
+	public Product() {
+		
+	}
+	
+	
+	public Product(int productId, String productTitle, String productContext, int wishCount, int price, Date reg_date,
+			String productStatus, int joinNumber, String userId, int category, int imageId) {
+		super();
+		this.productId = productId;
+		this.productTitle = productTitle;
+		this.productContext = productContext;
+		this.wishCount = wishCount;
+		this.price = price;
+		this.reg_date = reg_date;
+		this.productStatus = productStatus;
+		this.joinNumber = joinNumber;
+		this.userId = userId;
+		this.category = category;
+		this.imageId = imageId;
+	}
+	public int getproductId() {
 		return productId;
 	}
-	public void setproductId(long productId) {
+	public void setproductId(int productId) {
 		this.productId = productId;
 	}
 	public String getproductTitle() {
@@ -64,10 +84,10 @@ public class Product {
 	public void setJoinNumber(int joinNumber) {
 		this.joinNumber = joinNumber;
 	}
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	public int getCategory() {
