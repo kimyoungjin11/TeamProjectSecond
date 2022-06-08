@@ -4,7 +4,6 @@
 	width:1024px;
 	height: 1524px;
 	margin : auto;
-	background-color:blue;
 }
 
 .container .row{
@@ -42,10 +41,12 @@
 .container .list-wrapper li #product-img img{
 	width:238px;
 	height:218px;
+	margin-top:-22px;
 }
 
 .container .list-wrapper li #product-img #status{
 	z-index:1;
+	position:relative;
 }
 
 .container .list-wrapper li #product-info{
