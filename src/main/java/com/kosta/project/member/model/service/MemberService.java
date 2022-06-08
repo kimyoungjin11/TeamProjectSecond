@@ -14,5 +14,10 @@ public class MemberService {
 	public int insertMember(Member member) {
 		return memberDAO.insertMember(member);
 	}
+
+
+	public Member selectByNick(String nickName) {
+		return memberDAO.selectByNick(nickName);
+	}
 	
 }
