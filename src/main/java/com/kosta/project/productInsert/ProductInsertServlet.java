@@ -43,7 +43,7 @@ public class ProductInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8"); //한글 인코딩
 		Product product = productInsert(request);
 		ProductService pService = new ProductService();
-
+		System.out.println(product);
 		String dir = request.getServletContext().getRealPath(UPLOAD_DIR);
 		System.out.println("웹서버 경로 : " + dir);
 		Map<String, Object> map = UploadFileHelper.uploadFile(UPLOAD_DIR, request);
@@ -63,17 +63,21 @@ public class ProductInsertServlet extends HttpServlet {
 		Product product = new Product();
 		
 		int categoryId = readInt(request, "category_id");
+		
 		int price = readInt(request, "price");
 		int join_number = readInt(request, "join_number");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 	
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		Member member = (Member)session.getAttribute("loginMember");
-		/*
-		 * Member member = new Member(); member.setUserId("admin");
-		 */
+		
+		
+		 //Member member = new Member(); member.setUserId("admin");
+		 
 		System.out.println(member);
+		
+		
 		product.setUserId(member.getUserId());
 		product.setCategory(categoryId);
 		product.setPrice(price);

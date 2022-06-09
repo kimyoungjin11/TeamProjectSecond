@@ -82,9 +82,6 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 		return productList;
 	}
 
-
-
-	//INSERT PRODUCT
 		Member member = new Member();
 		
 		public int productInsert (Product product) {
