@@ -40,7 +40,7 @@ public class MemberLoginController extends HttpServlet {
 			session.setAttribute("loginMember", member);
 			session.setAttribute("msg", "로그인되었습니다.");
 			Member loginMember = (Member) session.getAttribute("loginMember");
-
+			System.out.println("깃허브테스트");
 		}
 
 		else if (member == null || !password.equals(member.getUserPassword())) {
