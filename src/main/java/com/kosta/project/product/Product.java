@@ -20,7 +20,7 @@ public class Product {
 		
 	}
 	
-	
+
 	public Product(int productId, String productTitle, String productContent, int wishCount, int viewCount, int price, Date reg_date,
 			String productStatus, int joinNumber, String userId, int category, int imageId) {
 		super();
@@ -117,7 +117,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "product [ productId = " + productId + ", productTitle=" + productTitle + ", productContent=" + productContent
+
+		"product [ productId = " + productId + ", productTitle=" + productTitle + ", productContent=" + productContent
 				+ ", wishCount=" + wishCount + ", price=" + price + ", reg_date=" + reg_date + ", productStatus="
 				+ productStatus + ", joinNumber=" + joinNumber + ", userId=" + userId + ", category=" + category + "]";
 	}
