@@ -40,10 +40,11 @@ public class ProductInsertServlet extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("서블맀 왔습니다.");
 		request.setCharacterEncoding("utf-8"); //한글 인코딩
 		Product product = productInsert(request);
+		System.out.println("서블맀 왓습니다2");
 		ProductService pService = new ProductService();
-		System.out.println(product);
 		String dir = request.getServletContext().getRealPath(UPLOAD_DIR);
 		System.out.println("웹서버 경로 : " + dir);
 		Map<String, Object> map = UploadFileHelper.uploadFile(UPLOAD_DIR, request);
@@ -52,9 +53,9 @@ public class ProductInsertServlet extends HttpServlet {
 		int result = pService.productInsert(product);
 		
 			
-		request.setAttribute("message", result>0? "게시 성공" : "게시 실패");
+		//request.setAttribute("message", result>0? "게시 성공" : "게시 실패");
 		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("index.jsp");
+		rd = request.getRequestDispatcher("/member/login.jsp");
 		rd.forward(request, response);
 	
 	}
@@ -92,6 +93,7 @@ public class ProductInsertServlet extends HttpServlet {
 	
 	private int readInt(HttpServletRequest request, String column) {
 		String data = request.getParameter(column);
+		System.out.println(data);
 		return Integer.parseInt(data);
 	}
 	
