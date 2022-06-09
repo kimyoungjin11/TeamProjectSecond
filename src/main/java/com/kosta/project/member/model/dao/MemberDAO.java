@@ -50,6 +50,7 @@ public class MemberDAO {
 			while (rs.next()) {
 				member = makeEmp(rs);
 				System.out.println("멤버:" + member);
+				System.out.println("깃허브테스트");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
