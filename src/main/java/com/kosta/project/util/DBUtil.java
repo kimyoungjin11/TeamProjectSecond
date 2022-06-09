@@ -26,7 +26,7 @@ public class DBUtil {
 	
 	public static Connection getConnection() {
 		Connection conn = null;
-		String url="jdbc:oracle:thin:@db20220602160542_high?TNS_ADMIN=C:/Users/ijbms/Desktop/secondProject/Wallet_DB20220602160542/";
+		String url="jdbc:oracle:thin:@db20220602160542_high?TNS_ADMIN=C:/Wallet_DB20220602160542/";
 		String userid="admin" , password= "KostaKosta33";
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");

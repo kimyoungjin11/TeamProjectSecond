@@ -1,8 +1,8 @@
 package com.kosta.project.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,10 +26,11 @@ public class MemberJoinController extends HttpServlet {
 		MemberService service = new MemberService();
 		int result = service.insertMember(member);
 		String path = request.getContextPath();
-		String msg = result>0 ? "가입을 환영합니다.!": "가입에 실패하셨습니다.";
-		request.setAttribute("message", msg);
+//		String msg = result>0 ? "가입을 환영합니다.!": "가입에 실패하셨습니다.";
+//		request.setAttribute("message", msg);
+
 		response.sendRedirect(path+"/jsp/login.jsp");
-		
+        
 	}
 	
 	private Member makeEmp(HttpServletRequest request) {

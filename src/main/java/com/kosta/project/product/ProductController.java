@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/board/*")
+@WebServlet("*.do")
 public class ProductController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ProductService productService;
 	Product product;
+	
 	
 	public void init() throws ServletException{
 		productService = new ProductService();
@@ -34,7 +35,7 @@ public class ProductController extends HttpServlet {
 		String nextPage = "";
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		String action = request.getPathInfo();
+		String action = request.getServletPath();
 		System.out.println("action:" + action);
 		try {
 			List<Product> productList = new ArrayList<Product>();

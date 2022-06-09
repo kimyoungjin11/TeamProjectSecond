@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -67,19 +70,44 @@ p {
 	color: white;
 }
 a {
+	display :inline-block;
 	text-decoration: none;
 	color: black;
 }
 #link a:hover {
 	text-decoration: underline;
 }
-#link a:first-of-type {
-	margin-right: 150px;
+/* #link a:last-of-type {
+	margin-left: 150px;
+} */
+
+#look_box{
+	align-cotent: left;
+	display:inline-block;
+	margin-right:100px;
 }
+/* #imgNaver{
+	display:block;
+	width:10px;
+	height:10px;
+} */
 </style>
 
 </head>
 <body>
+  <%-- <%
+    String clientId = "eqagp0fQve1EtqpGZsux";//애플리케이션 클라이언트 아이디값";
+    String redirectURI = URLEncoder.encode("http://192.168.3.1/TeamProjectSecond/jsp/common.jsp", "UTF-8");
+    SecureRandom random = new SecureRandom();
+    String state = new BigInteger(130, random).toString();
+    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+    apiURL += "&client_id=" + clientId;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&state=" + state;
+    session.setAttribute("state", state);
+ %>
+  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a> --%>
+  <!--여기까지.네이버  -->
 	<div id="wrap">
 		<a href="index.jsp"><h1>N분의1</h1></a>
 		<p>함께하면 가벼운 소비,<br>세상의 모든 소비를 나눠보세요.</p>
@@ -87,11 +115,17 @@ a {
 		<form  method="post" action="${path}/member/login">
 				<input class="input_login" type="text" name="userId" id="userId" placeholder="이메일주소를 입력하세요.">
 				<input class="input_login" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요.">
+				<div id="imgNaver" >
+				<input type="image" class="btn_login" alt="" src="../img/header/btnG_완성형2.png"  height=40px; >
+				</div>
 				<input class="btn_login" type="submit" value="로그인">
 		</form>
 		<div id="link">
-			<a href="">아이디/비밀번호 찾기</a>
-			<a href="${path}/member/memberEnroll">회원가입</a>
+			<div id="look_box">
+			<a href="${path}/member/IdFindCheck"  >아이디</a>
+			<a>/비밀번호찾기</a>
+			</div>
+			<a href="${path}/member/memberEnroll" > 회원가입</a>
 		</div>
 	</div>
 </body>
