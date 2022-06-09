@@ -30,6 +30,48 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 	ResultSet rs;
 	int result;
 	
+	public int insertProductImages(int pid , List<String> imageList) {
+	
+		int result = 0;
+		String sql = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
+		conn = DBUtil.getConnection();
+		try {
+			
+			pst = conn.prepareStatement(sql);
+			for(String fname :imageList) {
+				pst.setString(1, fname);
+				pst.setInt(2, pid);
+			}
+	 
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return result;
+	}
+	
+	public int maxProductNO() {
+		int product_id = 0;
+		String query = "select max(PRODUCT_ID) from tbl_product";
+		conn = DBUtil.getConnection();
+		 
+		try {
+			pst = conn.prepareStatement(query);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				product_id = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return product_id;
+	}
+	
 	public ArrayList<Product> selectAllProduct(){
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Connection connection = null;
@@ -82,7 +124,6 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 		return productList;
 	}
 
-		Member member = new Member();
 		
 		public int productInsert (Product product) {
 			int result = 0;

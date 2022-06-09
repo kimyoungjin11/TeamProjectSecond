@@ -1,101 +1,175 @@
-package com.kosta.project.productInsert;
+package com.kosta.project.product;
 
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
+import org.apache.tomcat.jdbc.pool.DataSource;
 
 import com.kosta.project.member.vo.Member;
-import com.kosta.project.product.Product;
-import com.kosta.project.product.ProductService;
 import com.kosta.project.product.vo.CategoryVO;
-import com.kosta.project.util.UploadFileHelper;
+import com.kosta.project.util.DBUtil;
 
-/**
- * Servlet implementation class ProductInsertController
- */
-@WebServlet("/jsp/productInsert.do")
-public class ProductInsertServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIR = "uploads";
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+public class ProductDAO {
+static final String SQL_SELECT_BYID = "SELECT * FROM TBL_PRODUCT";
+static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
+		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
+		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
+static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1"; 	
+	Connection conn;
+	Statement st;
+	PreparedStatement pst;
+	ResultSet rs;
+	int result;
 	
-		ProductService pService = new ProductService();
-		List<CategoryVO> clist = pService.selectCategoryName();
-		request.setAttribute("clist", clist);	
-		
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("productInsert.jsp");
-		rd.forward(request, response);
+	public int insertProductImages(int pid , List<String> imageList) {
 	
-	}
-	
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("서블맀 왔습니다.");
-		request.setCharacterEncoding("utf-8"); //한글 인코딩
-		Product product = productInsert(request);
-		System.out.println("서블맀 왓습니다2");
-		ProductService pService = new ProductService();
-		String dir = request.getServletContext().getRealPath(UPLOAD_DIR);
-		System.out.println("웹서버 경로 : " + dir);
-		Map<String, Object> map = UploadFileHelper.uploadFile(UPLOAD_DIR, request);
-		
-				
-		int result = pService.productInsert(product);
-		
+		int result = 0;
+		String sql = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
+		conn = DBUtil.getConnection();
+		try {
 			
-		//request.setAttribute("message", result>0? "게시 성공" : "게시 실패");
-		RequestDispatcher rd;
-		rd = request.getRequestDispatcher("/member/login.jsp");
-		rd.forward(request, response);
-	
+			pst = conn.prepareStatement(sql);
+			for(String fname :imageList) {
+				pst.setString(1, fname);
+				pst.setInt(2, pid);
+			}
+	 
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbClose(rs, pst, conn);
+		}
+
+		return result;
 	}
 	
-	private Product productInsert(HttpServletRequest request) {
-		Product product = new Product();
-		
-		int categoryId = readInt(request, "category_id");
-		
-		int price = readInt(request, "price");
-		int join_number = readInt(request, "join_number");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-	
-		HttpSession session = request.getSession();
-		Member member = (Member)session.getAttribute("loginMember");
-		
-		
-		 //Member member = new Member(); member.setUserId("admin");
+	public int maxProductNO() {
+		int product_id = 0;
+		String query = "select max(PRODUCT_ID) from tbl_product";
+		conn = DBUtil.getConnection();
 		 
-		System.out.println(member);
+		try {
+			pst = conn.prepareStatement(query);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				product_id = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		
-		product.setUserId(member.getUserId());
-		product.setCategory(categoryId);
-		product.setPrice(price);
-		product.setJoinNumber(join_number);
-		product.setproductTitle(title);
-		product.setproductContent(content);
-		
-		
-		System.out.println(product);
-		return product;
+		return product_id;
 	}
 	
-	private int readInt(HttpServletRequest request, String column) {
-		String data = request.getParameter(column);
-		System.out.println(data);
-		return Integer.parseInt(data);
+	public ArrayList<Product> selectAllProduct(){
+		ArrayList<Product> productList = new ArrayList<Product>();
+		Connection connection = null;
+		pst = null;
+		rs = null;
+		try {
+			connection = DBUtil.getConnection();
+			String query = SQL_SELECT_BYID;
+			pst = connection.prepareStatement(query);
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				int productId = rs.getInt("product_Id");
+				String productTitle = rs.getString("title");
+				String productContent = rs.getString("content");
+				int wishCount = rs.getInt("wish_Count");
+				int price = rs.getInt("price");
+				Date reg_date = rs.getDate("reg_date");
+				String productStatus = rs.getString("product_Status");
+				int joinNumber = rs.getInt("join_Number");
+				String userId = rs.getString("user_Id");
+				int category = rs.getInt("category_id");
+				
+				Product product = new Product();
+				product.setproductId(productId);
+				product.setproductTitle(productTitle);
+				product.setproductContent(productContent);
+				product.setWishCount(wishCount);
+				product.setPrice(price);
+				product.setReg_date(reg_date);
+				product.setproductStatus(productStatus);
+				product.setJoinNumber(joinNumber);
+				product.setUserId(userId);
+				product.setCategory(category);
+				System.out.println(product.toString());
+				productList.add(product);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pst != null) pst.close();
+				if(conn != null) conn.close();
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return productList;
 	}
+
+
+
+	//INSERT PRODUCT
+		//Member member = new Member();
+		
+		public int productInsert (Product product) {
+			int result = 0;
+			
+			conn = DBUtil.getConnection();
+			try {
+				pst = conn.prepareStatement(SQL_INSERT_PRODUCT);
+				pst.setString(1, product.getUserId()); //현재 세션에서 user id 가져오기
+				pst.setInt(2, product.getCategory());
+				pst.setString(3, product.getproductTitle());
+				pst.setString(4, product.getproductContent());
+				pst.setInt(5, product.getPrice());
+				pst.setInt(6, product.getJoinNumber());
+		
+				result = pst.executeUpdate();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBUtil.dbClose(rs, pst, conn);
+			}
+
+			return result;
+		}
 	
 
+	//SELECT ALL CATEGORY NAME
+		public List<CategoryVO> selectCategoryName() {
+			List<CategoryVO> clist = new ArrayList<>();
+			conn = DBUtil.getConnection();
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(SQL_CATEGORY_NAME);
+				while (rs.next()) {
+					CategoryVO category = new CategoryVO(rs.getInt(1), rs.getString(2));
+					clist.add(category);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBUtil.dbClose(rs, st, conn);
+			}
+			return clist;
+	}
 }

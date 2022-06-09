@@ -7,6 +7,9 @@ import com.kosta.project.product.vo.CategoryVO;
 public class ProductService {
 	ProductDAO productDAO = new ProductDAO();
 	
+	public int maxProductNO() {
+		return productDAO.maxProductNO();
+	}
 	
 	public List<Product> listProduct(){
 		List<Product> productList = productDAO.selectAllProduct();
@@ -21,6 +24,11 @@ public class ProductService {
 	//카테고리
 	public List<CategoryVO> selectCategoryName(){
 		return productDAO.selectCategoryName();
+	}
+
+	public int inserProductImages(int pid, List<String> imageList) {
+		// TODO Auto-generated method stub
+		return productDAO.insertProductImages(pid, imageList);
 	}
 
 
