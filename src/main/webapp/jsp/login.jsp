@@ -10,11 +10,23 @@
 <meta charset="UTF-8">
 <title>공동구매 플랫폼, N분의1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com"  >
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel=stylesheet href="../css/reset.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+ 
+ <script type="text/javascript">
+    
+    $(function(){
+    	var aa = "${msg}";
+    	if(aa != "")  	alert(aa);
+    });
+ </script>
+ 
+ 
 <style>
 * { 
 	text-align:center;
@@ -111,7 +123,9 @@ a {
 	<div id="wrap">
 		<a href="index.jsp"><h1>N분의1</h1></a>
 		<p>함께하면 가벼운 소비,<br>세상의 모든 소비를 나눠보세요.</p>
-		<c:set var= "path" value="${pageContext.request.contextPath }"/>
+		<c:set var= "path" value="${pageContext.request.contextPath}"/>
+		<script type="text/javascript">
+		</script>
 		<form  method="post" action="${path}/member/login">
 				<input class="input_login" type="text" name="userId" id="userId" placeholder="이메일주소를 입력하세요.">
 				<input class="input_login" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요.">
