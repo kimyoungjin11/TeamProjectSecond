@@ -23,11 +23,11 @@ public class NickDuplicateCheck extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String nickName = request.getParameter("nickname");
-        System.out.println("emp_Id:" + nickName);
+		String nickname = request.getParameter("nickName");
+       // System.out.println("emp_Id:" + nickname);
         //DB에 직원id가 존재하는지 체크한다. ???empService->empDAO-->DB
         MemberService service = new MemberService();
-        Member member = service.selectByNick(nickName);
+        Member member = service.selectByNick(nickname);
         PrintWriter out = response.getWriter();
         out.print(member==null?0:1);
 	}
