@@ -5,8 +5,9 @@ import java.sql.Date;
 public class Product {
 	private int productId;
 	private String productTitle;
-	private String productContext;
+	private String productContent;
 	private int wishCount;
+	private int viewCount;
 	private int price;
 	private Date reg_date;
 	private String productStatus;
@@ -15,18 +16,18 @@ public class Product {
 	private int category;
 	private int imageId;
 	
-	
 	public Product() {
 		
 	}
 	
 	
-	public Product(int productId, String productTitle, String productContext, int wishCount, int price, Date reg_date,
+	public Product(int productId, String productTitle, String productContent, int wishCount, int viewCount, int price, Date reg_date,
 			String productStatus, int joinNumber, String userId, int category, int imageId) {
 		super();
 		this.productId = productId;
 		this.productTitle = productTitle;
-		this.productContext = productContext;
+		this.productContent = productContent;
+		this.viewCount = viewCount;
 		this.wishCount = wishCount;
 		this.price = price;
 		this.reg_date = reg_date;
@@ -48,11 +49,11 @@ public class Product {
 	public void setproductTitle(String productTitle) {
 		this.productTitle = productTitle;
 	}
-	public String getproductContext() {
-		return productContext;
+	public String getproductContent() {
+		return productContent;
 	}
-	public void setproductContext(String productContext) {
-		this.productContext = productContext;
+	public void setproductContent(String productContent) {
+		this.productContent = productContent;
 	}
 	public int getWishCount() {
 		return wishCount;
@@ -104,9 +105,19 @@ public class Product {
 		this.imageId = imageId;
 	}
 	
+	public int getViewCount() {
+		return viewCount;
+	}
+
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
+
 	@Override
 	public String toString() {
-		return "product [productId=" + productId + ", productTitle=" + productTitle + ", productContext=" + productContext
+		return "product [ productId = " + productId + ", productTitle=" + productTitle + ", productContent=" + productContent
 				+ ", wishCount=" + wishCount + ", price=" + price + ", reg_date=" + reg_date + ", productStatus="
 				+ productStatus + ", joinNumber=" + joinNumber + ", userId=" + userId + ", category=" + category + "]";
 	}

@@ -2,21 +2,26 @@ package com.kosta.project.product;
 
 import java.util.List;
 
+import com.kosta.project.product.vo.CategoryVO;
+
 public class ProductService {
-	ProductDAO productDAO;
+	ProductDAO productDAO = new ProductDAO();
 	
-	public ProductService() {
-		productDAO = new ProductDAO();
-	}
 	
 	public List<Product> listProduct(){
 		List<Product> productList = productDAO.selectAllProduct();
 		return productList;
 	}
-
+	
 	//상품 등록
-	public int insertProduct(Product product, String userId) {
-		return productDAO.productInsert(product, userId);
+	public int productInsert(Product product) {
+		return productDAO.productInsert(product);
 	}
+	
+	//카테고리
+	public List<CategoryVO> selectCategoryName(){
+		return productDAO.selectCategoryName();
+	}
+
 
 }
