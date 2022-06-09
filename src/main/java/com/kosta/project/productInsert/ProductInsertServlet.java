@@ -69,7 +69,7 @@ public class ProductInsertServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 	
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		
 		

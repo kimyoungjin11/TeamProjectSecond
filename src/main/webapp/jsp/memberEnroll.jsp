@@ -44,6 +44,7 @@
 </head>
 
 <body>
+<c:set var="path" value="${pageContext.request.contextPath}"></c:set>
   <div class="container">
        
        
@@ -175,8 +176,8 @@
     			return;
     		}
     		$.ajax({
-    			url:"nickname",
-    			data:{"nickname":$("#nickName").val()  },
+    			url:"${path}/member/nickname",
+    			data:{"nickname":$("#nickName").val() },
     			type:"get",
     			success: function(responseData){
     				//중복:1, 중복안됨:0
