@@ -20,6 +20,19 @@ h1, a, p, li, em, input {
 	width: 40px;
 }
 
+
+#insertBtn {
+	position: fixed;
+	bottom: 10%;
+	right: 10%;
+	cursor: pointer;
+}
+
+#insertBtn img {
+	display: inline-block;
+	width: 45px;
+}
+
 header {
 	width: 100%;
 	height: 80px;
@@ -28,7 +41,6 @@ header {
 
 #header_wrap {
 	padding:10px 0px 0px 0px;
-	height:100%;
 	width: 1024px;
 	margin: 0 auto;
 }
@@ -78,9 +90,12 @@ header {
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 
-nav {
+
+.dropdown {
 	margin-right: 80px;
 }
+
+/*header right*/
 
 #btn_menu {
 	position: absolute;
@@ -104,15 +119,14 @@ nav {
 	
 	
 	
-	
-	
-	
-	
 
 #logo img {
 	height: 45px;
 	margin-top: 5px;
 }
+
+
+/*header right*/
 
 #header_center {
 	float: left;
@@ -145,11 +159,16 @@ nav {
 	width: 20px;
 }
 
+
+
+/*header right*/
 #header_right {
+	width:100%;
 	margin-top:15px;
 	float: right;
 	font-size: 15px;	
 }
+
 #btn_mypage {
 	margin-right: 15px;
 }

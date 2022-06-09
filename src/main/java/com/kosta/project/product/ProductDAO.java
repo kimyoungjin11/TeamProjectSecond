@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,22 +15,21 @@ import javax.naming.InitialContext;
 import org.apache.tomcat.jdbc.pool.DataSource;
 
 import com.kosta.project.member.vo.Member;
+import com.kosta.project.product.vo.CategoryVO;
 import com.kosta.project.util.DBUtil;
 
 public class ProductDAO {
 static final String SQL_SELECT_BYID = "SELECT * FROM TBL_PRODUCT";
-static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTEXT,\r\n"
+static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
-		+ "VALUES ('admin', ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, 'N', ?)";
-	
+		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
+static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1"; 	
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
 	ResultSet rs;
 	int result;
 	
-	
-
 	public ArrayList<Product> selectAllProduct(){
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Connection connection = null;
@@ -43,8 +43,8 @@ static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATE
 			
 			while(rs.next()) {
 				int productId = rs.getInt("product_Id");
-				String productTitle = rs.getString("Title");
-				String productContent = rs.getString("Content");
+				String productTitle = rs.getString("title");
+				String productContent = rs.getString("content");
 				int wishCount = rs.getInt("wish_Count");
 				int price = rs.getInt("price");
 				Date reg_date = rs.getDate("reg_date");
@@ -87,13 +87,13 @@ static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATE
 	//INSERT PRODUCT
 		Member member = new Member();
 		
-		public int productInsert (Product product, String userId) {
+		public int productInsert (Product product) {
 			int result = 0;
 			
 			conn = DBUtil.getConnection();
 			try {
 				pst = conn.prepareStatement(SQL_INSERT_PRODUCT);
-				pst.setString(1, userId); //현재 세션에서 user id 가져오기
+				pst.setString(1, product.getUserId()); //현재 세션에서 user id 가져오기
 				pst.setInt(2, product.getCategory());
 				pst.setString(3, product.getproductTitle());
 				pst.setString(4, product.getproductContent());
@@ -110,5 +110,24 @@ static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATE
 
 			return result;
 		}
-	}
+	
 
+	//SELECT ALL CATEGORY NAME
+		public List<CategoryVO> selectCategoryName() {
+			List<CategoryVO> clist = new ArrayList<>();
+			conn = DBUtil.getConnection();
+			try {
+				st = conn.createStatement();
+				rs = st.executeQuery(SQL_CATEGORY_NAME);
+				while (rs.next()) {
+					CategoryVO category = new CategoryVO(rs.getInt(1), rs.getString(2));
+					clist.add(category);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBUtil.dbClose(rs, st, conn);
+			}
+			return clist;
+	}
+}

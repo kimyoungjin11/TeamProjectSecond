@@ -1,17 +1,22 @@
 package com.kosta.project.product.vo;
 
-public class CateogryVO {
+public class CategoryVO {
 	int category_id;
 	String category_name;
 		
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CateogryVO [category_id=").append(category_id).append(", category_name=").append(category_name)
+		builder.append("CategoryVO [category_id=").append(category_id).append(", category_name=").append(category_name)
 				.append("]");
 		return builder.toString();
 	}
-	public CateogryVO(int category_id, String category_name) {
+	
+	public CategoryVO(){
+		super();
+	}
+	
+	public CategoryVO(int category_id, String category_name) {
 		super();
 		this.category_id = category_id;
 		this.category_name = category_name;
