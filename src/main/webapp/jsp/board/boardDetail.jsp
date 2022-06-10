@@ -7,17 +7,17 @@
             crossorigin="anonymous"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-
-    
+  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel=stylesheet href="../../css/reset.css">
-<link rel=stylesheet href="../../css/boardDetail.css">
+<link rel=stylesheet href="../css/reset.css">
+<link rel=stylesheet href="../css/boardDetail.css">
 
 </head>
 <body>
@@ -26,28 +26,28 @@
 		<div class=title-wrapper>
 			<div id=item-img>
 				<div id=img-bag>
-					<img src="../../img/testimg/gogood.jpg" alt="상품">
+					<img src="../img/testimg/gogood.jpg" alt="상품">
 				</div>
 			</div>
 			<div id=item-info>
 				<div id=item-title>
-					<span>제목</span>
-					<span id=item-date>날짜</span>
-					<div id=item-price>100000원/N</div>
+					<span>${productView.productTitle}</span>
+					<span id=item-date>${productView.userId}</span>
+					<div id=item-price>${productView.price}원</div>
 				</div>
 				<div id=item-ect>
 					<span class=item-ect-class>
-						<img src="../../img/testimg/eye-outline.svg" alt="조회수">조회수
+						<img src="../img/testimg/eye-outline.svg" alt="조회수">조회수
 					</span>
 					<span class=item-ect-class>
-						<img src="../../img/testimg/heart-outline.svg" alt="조회수">찜 개수
+						<img src="../img/testimg/heart-outline.svg" alt="조회수">${productView.wishCount}
 					</span>
 				</div>
 				<div id=item-sssss>
-				aa
+				${productView.productContent}
 				</div>
 				<div id=item-buy>
-					<button id=heart><img src="../../img/testimg/heart.svg" alt="조회수">하트 수</button>
+					<button id=heart><img src="../img/testimg/heart.svg" alt="조회수">${productView.wishCount}</button>
 					<button id=buy>구매하기</button>
 				</div>
 				

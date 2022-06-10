@@ -14,14 +14,15 @@ public class Product {
 	private int joinNumber;
 	private String userId;
 	private int category;
-	 
+	
 	public Product() {
 		
 	}
 	
-	
-	public Product(int productId, String productTitle, String productContent, int wishCount, int viewCount, int price, Date reg_date,
-			String productStatus, int joinNumber, String userId, int category, int imageId) {
+
+	public Product(int productId, String productTitle, String productContent, int wishCount,
+			       int viewCount, int price, Date reg_date,
+			String productStatus, int joinNumber, String userId, int category) {
 		super();
 		this.productId = productId;
 		this.productTitle = productTitle;
@@ -34,7 +35,6 @@ public class Product {
 		this.joinNumber = joinNumber;
 		this.userId = userId;
 		this.category = category;
-	
 	}
 	public int getproductId() {
 		return productId;
@@ -96,7 +96,8 @@ public class Product {
 	public void setCategory(int category) {
 		this.category = category;
 	}
-		
+	
+	
 	public int getViewCount() {
 		return viewCount;
 	}
@@ -109,9 +110,13 @@ public class Product {
 
 	@Override
 	public String toString() {
+
 		return "product [ productId = " + productId + ", productTitle=" + productTitle + ", productContent=" + productContent
 				+ ", wishCount=" + wishCount + ", price=" + price + ", reg_date=" + reg_date + ", productStatus="
 				+ productStatus + ", joinNumber=" + joinNumber + ", userId=" + userId + ", category=" + category + "]";
 	}
+	
+	
+	
 	
 }

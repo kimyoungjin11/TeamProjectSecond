@@ -67,14 +67,21 @@ p {
 	color: white;
 }
 a {
+	display :inline-block;
 	text-decoration: none;
 	color: black;
 }
 #link a:hover {
 	text-decoration: underline;
 }
-#link a:first-of-type {
-	margin-right: 150px;
+/* #link a:last-of-type {
+	margin-left: 150px;
+} */
+
+#look_box{
+	align-cotent: left;
+	display:inline-block;
+	margin-right:100px;
 }
 </style>
 
@@ -90,8 +97,11 @@ a {
 				<input class="btn_login" type="submit" value="로그인">
 		</form>
 		<div id="link">
-			<a href="">아이디/비밀번호 찾기</a>
-			<a href="${path}/member/memberEnroll">회원가입</a>
+			<div id="look_box">
+			<a href="${path}/member/IdFindCheck"  >아이디</a>
+			<a>/비밀번호찾기</a>
+			</div>
+			<a href="${path}/member/memberEnroll" > 회원가입</a>
 		</div>
 	</div>
 </body>

@@ -12,7 +12,9 @@ import com.kosta.project.util.DBUtil;
 public class MemberDAO {
 	static final String SQL_SELECT_BYID = "select * from tbl_user where user_id = ?";
 	static final String SQL_INSERT_MEMBER = "insert into tbl_user values(?,?,?,?,sysdate,?,'user')";
-	static final String SQL_SELECT_NICK = "select * from tbl_user where nickname='?'";
+
+	static final String SQL_SELECT_NICK = "select * from tbl_user where nickname=?";
+
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
@@ -48,16 +50,15 @@ public class MemberDAO {
 			pst.setString(1, userId);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				member = makeEmp(rs);
-				System.out.println("멤버:" + member);
-				System.out.println("깃허브테스트");
+				emp = makeEmp(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbClose(rs, pst, conn);
 		}
-		return member;
+
+		return emp;
 	}
 
 	public int insertMember(Member member) {
@@ -84,7 +85,7 @@ public class MemberDAO {
 	}
 
 	private Member makeEmp(ResultSet rs) throws SQLException {
-		System.out.println("emp왔습니다..");
+
 		Member emp = new Member();
 		emp.setUserId(rs.getString("user_Id"));
 		emp.setUserName(rs.getString("user_name"));

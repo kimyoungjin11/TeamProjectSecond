@@ -13,11 +13,9 @@ public class CategoryVO {
 	}
 	
 	public CategoryVO(){
-		super();
 	}
 	
 	public CategoryVO(int category_id, String category_name) {
-		super();
 		this.category_id = category_id;
 		this.category_name = category_name;
 	}

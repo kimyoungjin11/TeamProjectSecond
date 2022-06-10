@@ -25,6 +25,16 @@ public Member(String userId, String userName, String userPassword, String nickNa
 	this.phone = phone;
 	this.userRole = userRole;
 }
+
+public Member(String userId, String userPassword, String phone) {
+	super();
+	this.userId = userId;
+	this.userPassword = userPassword;
+	this.phone = phone;
+}
+public Member(String userid) {
+	// TODO Auto-generated constructor stub
+}
 public String getUserId() {
 	return userId;
 }

@@ -19,28 +19,38 @@ import com.kosta.project.product.vo.CategoryVO;
 import com.kosta.project.util.DBUtil;
 
 public class ProductDAO {
-static final String SQL_SELECT_BYID = "SELECT * FROM TBL_PRODUCT";
+//static final String SQL_SELECT_ALL = "SELECT * FROM TBL_PRODUCT";
 static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
 		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
+
 static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 static final String SQL_MAX_Product_ID = "select max(PRODUCT_ID) from tbl_product";
 static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
+
+static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.PRODUCT_ID = ?";
+
+  
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
 	ResultSet rs;
 	int result;
-	
-	
-	public ArrayList<Product> selectAllProduct(){
+
+  
+  
+	//선녀 - 상품 전체 목록
+	public ArrayList<Product> selectAllProduct(String category_id, String keyword, String sort){
+
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Connection connection = null;
 		pst = null;
 		rs = null;
 		try {
 			connection = DBUtil.getConnection();
-			String query = SQL_SELECT_BYID;
+			if(category_id.equals("전체")) category_id = "%";
+			String query = "select * from tbl_product where CATEGORY_ID like '" 
+			              + category_id + "' and content like '%" + keyword + "%' order by reg_date  " + sort;
 			pst = connection.prepareStatement(query);
 			rs = pst.executeQuery();
 			
@@ -87,7 +97,7 @@ static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images 
 
 
 
-	//INSERT PRODUCT
+	//솔 - INSERT PRODUCT
 		
 		public int productInsert (Product product) {
 			int result = 0;
@@ -114,7 +124,7 @@ static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images 
 		}
 	
 
-	//SELECT ALL CATEGORY NAME
+	//솔 - SELECT ALL CATEGORY NAME
 		public List<CategoryVO> selectCategoryName() {
 			List<CategoryVO> clist = new ArrayList<>();
 			conn = DBUtil.getConnection();
@@ -132,10 +142,9 @@ static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images 
 			}
 			return clist;
 	}
+				
 		
-		
-		
-	//GET MAX PRODUCT ID	
+	//솔 - GET MAX PRODUCT ID	
 		
 		public int maxProductNO() {
 			int product_id = 0;
@@ -156,7 +165,7 @@ static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images 
 		}
 		
 		
-	//INSERT PRODUCT IMAGES	
+	//솔 - INSERT PRODUCT IMAGES	
 	
 		public int insertProductImages(int pid , List<String> imageList) {
 			System.out.println(imageList);
@@ -195,5 +204,55 @@ static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images 
 		}
 		
 		
-		
+	//승민	
+  
+		public Product selectProductById(int product_id){
+			Product viewProduct = new Product();
+			Connection connection = null;
+			pst = null;
+			rs = null;
+			try {
+				connection = DBUtil.getConnection();
+				String query = SQL_SELECT_PRODUCT;
+				pst = connection.prepareStatement(query);
+				pst.setInt(1, product_id);
+				rs = pst.executeQuery();
+				
+				rs.next();
+					int productId = rs.getInt("product_Id");
+					String productTitle = rs.getString("title");
+					String productContent = rs.getString("content");
+					int wishCount = rs.getInt("wish_Count");
+					int price = rs.getInt("price");
+					Date reg_date = rs.getDate("reg_date");
+					String productStatus = rs.getString("product_Status");
+					int joinNumber = rs.getInt("join_Number");
+					String userId = rs.getString("user_Id");
+					int category = rs.getInt("category_id");
+					
+					viewProduct.setproductId(productId);
+					viewProduct.setproductTitle(productTitle);
+					viewProduct.setproductContent(productContent);
+					viewProduct.setWishCount(wishCount);
+					viewProduct.setPrice(price);
+					viewProduct.setReg_date(reg_date);
+					viewProduct.setproductStatus(productStatus);
+					viewProduct.setJoinNumber(joinNumber);
+					viewProduct.setUserId(userId);
+					viewProduct.setCategory(category);
+					System.out.println(viewProduct.toString());
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null) rs.close();
+					if(pst != null) pst.close();
+					if(conn != null) conn.close();
+				} catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			return viewProduct;
+		}
 }
