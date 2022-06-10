@@ -1,5 +1,10 @@
 package com.kosta.project.product;
 
-public class aaa {
+import java.util.List;
 
+public class aaa {
+	String name;
+	String sungmin;
+	
+	Product hello = new Product(); 
 }
