@@ -67,7 +67,11 @@ img {
 
 .board-wrapper .title-wrapper #item-info #item-title #item-price {
     font-size: 35px;
+    display:inline-block;
     margin: 0px 0px 30px;
+}
+.board-wrapper .title-wrapper #item-info #item-title #join-number{
+	display:inline-block;
 }
 
 .board-wrapper .title-wrapper #item-info #item-ect {

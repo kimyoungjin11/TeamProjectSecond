@@ -33,11 +33,14 @@
 				<div id=item-title>
 					<span>${productView.productTitle}</span>
 					<span id=item-date>${productView.userId}</span>
-					<div id=item-price>${productView.price}원</div>
+					<div>
+						<span id=item-price>${productView.price}</span>
+						<span id=join-number>/${productView.joinNumber}</span>
+					</div>
 				</div>
 				<div id=item-ect>
 					<span class=item-ect-class>
-						<img src="../img/testimg/eye-outline.svg" alt="조회수">조회수
+						<img src="../img/testimg/eye-outline.svg" alt="조회수">${productView.viewCount}
 					</span>
 					<span class=item-ect-class>
 						<img src="../img/testimg/heart-outline.svg" alt="조회수">${productView.wishCount}
@@ -47,6 +50,7 @@
 				${productView.productContent}
 				</div>
 				<div id=item-buy>
+				
 					<button id=heart><img src="../img/testimg/heart.svg" alt="조회수">${productView.wishCount}</button>
 					<button id=buy>구매하기</button>
 				</div>
