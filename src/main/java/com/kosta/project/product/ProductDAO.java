@@ -23,7 +23,9 @@ public class ProductDAO {
 static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
 		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
-static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1"; 	
+static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1"; 
+static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.PRODUCT_ID = ?";
+
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
@@ -133,4 +135,54 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 			}
 			return clist;
 	}
+		
+		public Product selectProductById(int product_id){
+			Product viewProduct = new Product();
+			Connection connection = null;
+			pst = null;
+			rs = null;
+			try {
+				connection = DBUtil.getConnection();
+				String query = SQL_SELECT_PRODUCT;
+				pst = connection.prepareStatement(query);
+				pst.setInt(1, product_id);
+				rs = pst.executeQuery();
+				
+				rs.next();
+					int productId = rs.getInt("product_Id");
+					String productTitle = rs.getString("title");
+					String productContent = rs.getString("content");
+					int wishCount = rs.getInt("wish_Count");
+					int price = rs.getInt("price");
+					Date reg_date = rs.getDate("reg_date");
+					String productStatus = rs.getString("product_Status");
+					int joinNumber = rs.getInt("join_Number");
+					String userId = rs.getString("user_Id");
+					int category = rs.getInt("category_id");
+					
+					viewProduct.setproductId(productId);
+					viewProduct.setproductTitle(productTitle);
+					viewProduct.setproductContent(productContent);
+					viewProduct.setWishCount(wishCount);
+					viewProduct.setPrice(price);
+					viewProduct.setReg_date(reg_date);
+					viewProduct.setproductStatus(productStatus);
+					viewProduct.setJoinNumber(joinNumber);
+					viewProduct.setUserId(userId);
+					viewProduct.setCategory(category);
+					System.out.println(viewProduct.toString());
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			} finally {
+				try {
+					if(rs != null) rs.close();
+					if(pst != null) pst.close();
+					if(conn != null) conn.close();
+				} catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			return viewProduct;
+		}
 }

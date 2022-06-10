@@ -60,13 +60,13 @@ body {
 					<c:forEach items="${productList}" var="productList">
 						<li>
 							<div id="product-img">
-								<span id="status" >${productList.productStatus}</span> 
-								<a href="#"> <!-- <img src="#" /> -->
+								<span id="/TeamProjectSecond/product/view.do?productId=${productList.productId}" >${productList.productStatus}</span> 
+								<a href=""> <!-- <img src="#" /> -->
 								</a>
 							</div>
 
 							<div id="product-info">
-								<a href="#" id="title">${productList.productTitle}</a> <span
+								<a href="/TeamProjectSecond/product/view.do?productId=${productList.productId}" id="title">${productList.productTitle}</a> <span
 									id="price">${productList.price}원</span> 
 									<%-- <span id="userid">${productList.userId}</span> --%>
 								<span id="date">${productList.reg_date}</span>

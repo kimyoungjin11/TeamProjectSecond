@@ -2,6 +2,8 @@ package com.kosta.project.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.kosta.project.product.vo.CategoryVO;
 
 public class ProductService {
@@ -27,6 +29,13 @@ public class ProductService {
 	//카테고리
 	public List<CategoryVO> selectCategoryName(){
 		return productDAO.selectCategoryName();
+	}
+	
+
+	
+	public Product view(int productId) {
+		Product viewProduct = productDAO.selectProductById(productId);
+		return viewProduct;
 	}
 
 
