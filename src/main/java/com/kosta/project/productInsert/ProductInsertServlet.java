@@ -24,7 +24,7 @@ import com.kosta.project.util.UploadFileHelper;
 @WebServlet("/jsp/productInsert.do")
 public class ProductInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIR = "uploads";
+	private static final String UPLOAD_DIR = "uploads"; //test
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
