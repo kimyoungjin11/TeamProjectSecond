@@ -14,13 +14,15 @@ public class Product {
 	private int joinNumber;
 	private String userId;
 	private int category;
-	 
+	private int imageId;
+	
 	public Product() {
 		
 	}
 	
 
-	public Product(int productId, String productTitle, String productContent, int wishCount, int viewCount, int price, Date reg_date,
+	public Product(int productId, String productTitle, String productContent, int wishCount,
+			       int viewCount, int price, Date reg_date,
 			String productStatus, int joinNumber, String userId, int category, int imageId) {
 		super();
 		this.productId = productId;
@@ -34,7 +36,7 @@ public class Product {
 		this.joinNumber = joinNumber;
 		this.userId = userId;
 		this.category = category;
-	
+		this.imageId = imageId;
 	}
 	public int getproductId() {
 		return productId;
@@ -96,7 +98,14 @@ public class Product {
 	public void setCategory(int category) {
 		this.category = category;
 	}
-		
+	
+	public int getimageId() {
+		return category;
+	}
+	public void setimageId(int imageId) {
+		this.imageId = imageId;
+	}
+	
 	public int getViewCount() {
 		return viewCount;
 	}
@@ -110,9 +119,12 @@ public class Product {
 	@Override
 	public String toString() {
 
-	return	"product [ productId = " + productId + ", productTitle=" + productTitle + ", productContent=" + productContent
+		return "product [ productId = " + productId + ", productTitle=" + productTitle + ", productContent=" + productContent
 				+ ", wishCount=" + wishCount + ", price=" + price + ", reg_date=" + reg_date + ", productStatus="
 				+ productStatus + ", joinNumber=" + joinNumber + ", userId=" + userId + ", category=" + category + "]";
 	}
+	
+	
+	
 	
 }

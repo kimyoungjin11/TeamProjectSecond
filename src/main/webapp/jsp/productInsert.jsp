@@ -29,9 +29,8 @@
 			<div class="form_group">
 				<label>카테고리</label>
 				<select name="category_id">
-		<c:forEach items="${clist}" var="category">
-		   				<option value="${category.category_id}">${category.category_id}${category.category_name}</option>
-						
+					<c:forEach items="${clist}" var="category">
+		   				<option value="${category.category_id}">${category.category_name}</option>
 		 			</c:forEach>
 				</select>
 			</div>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>boardList_jsp</title>
 <link rel=stylesheet href="css/reset.css">
 <link rel=stylesheet href="css/boardList.css">
 </head>
@@ -19,6 +19,8 @@
 	
 		<div class="row">
 			<ul class="list-wrapper">
+			
+			
 				<c:forEach items="${productList}" var="productList">
 					<li>
 						<div  id="product-img">

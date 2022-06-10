@@ -19,7 +19,7 @@ import com.kosta.project.product.vo.CategoryVO;
 import com.kosta.project.util.DBUtil;
 
 public class ProductDAO {
-static final String SQL_SELECT_BYID = "SELECT * FROM TBL_PRODUCT";
+//static final String SQL_SELECT_ALL = "SELECT * FROM TBL_PRODUCT";
 static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
 		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
@@ -30,56 +30,17 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 	ResultSet rs;
 	int result;
 	
-	public int insertProductImages(int pid , List<String> imageList) {
-	
-		int result = 0;
-		String sql = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
-		conn = DBUtil.getConnection();
-		try {
-			
-			pst = conn.prepareStatement(sql);
-			for(String fname :imageList) {
-				pst.setString(1, fname);
-				pst.setInt(2, pid);
-			}
-	 
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbClose(rs, pst, conn);
-		}
-
-		return result;
-	}
-	
-	public int maxProductNO() {
-		int product_id = 0;
-		String query = "select max(PRODUCT_ID) from tbl_product";
-		conn = DBUtil.getConnection();
-		 
-		try {
-			pst = conn.prepareStatement(query);
-			rs = pst.executeQuery();
-			while(rs.next()) {
-				product_id = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return product_id;
-	}
-	
-	public ArrayList<Product> selectAllProduct(){
+	//상품 전체 목록
+	public ArrayList<Product> selectAllProduct(String category_id, String keyword, String sort){
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Connection connection = null;
 		pst = null;
 		rs = null;
 		try {
 			connection = DBUtil.getConnection();
-			String query = SQL_SELECT_BYID;
+			if(category_id.equals("전체")) category_id = "%";
+			String query = "select * from tbl_product where CATEGORY_ID like '" 
+			              + category_id + "' and content like '%" + keyword + "%' order by reg_date  " + sort;
 			pst = connection.prepareStatement(query);
 			rs = pst.executeQuery();
 			
@@ -124,6 +85,10 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 		return productList;
 	}
 
+
+
+	//INSERT PRODUCT
+		Member member = new Member();
 		
 		public int productInsert (Product product) {
 			int result = 0;
