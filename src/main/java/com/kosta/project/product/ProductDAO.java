@@ -23,17 +23,25 @@ public class ProductDAO {
 static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
 		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
-static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1"; 
+
+static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
+static final String SQL_MAX_Product_ID = "select max(PRODUCT_ID) from tbl_product";
+static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
+
 static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.PRODUCT_ID = ?";
 
+  
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
 	ResultSet rs;
 	int result;
-	
-	//상품 전체 목록
+
+  
+  
+	//선녀 - 상품 전체 목록
 	public ArrayList<Product> selectAllProduct(String category_id, String keyword, String sort){
+
 		ArrayList<Product> productList = new ArrayList<Product>();
 		Connection connection = null;
 		pst = null;
@@ -89,8 +97,7 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 
 
 
-	//INSERT PRODUCT
-		Member member = new Member();
+	//솔 - INSERT PRODUCT
 		
 		public int productInsert (Product product) {
 			int result = 0;
@@ -117,7 +124,7 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 		}
 	
 
-	//SELECT ALL CATEGORY NAME
+	//솔 - SELECT ALL CATEGORY NAME
 		public List<CategoryVO> selectCategoryName() {
 			List<CategoryVO> clist = new ArrayList<>();
 			conn = DBUtil.getConnection();
@@ -135,7 +142,70 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 			}
 			return clist;
 	}
+				
 		
+	//솔 - GET MAX PRODUCT ID	
+		
+		public int maxProductNO() {
+			int product_id = 0;
+			String query = SQL_MAX_Product_ID;
+			conn = DBUtil.getConnection();
+			 
+			try {
+				pst = conn.prepareStatement(query);
+				rs = pst.executeQuery();
+				while(rs.next()) {
+					product_id = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return product_id;
+		}
+		
+		
+	//솔 - INSERT PRODUCT IMAGES	
+	
+		public int insertProductImages(int pid , List<String> imageList) {
+			System.out.println(imageList);
+			int result = 0;
+			String query = SQL_INSERT_PRODUCT_Images;
+			
+			try {
+				conn.setAutoCommit(false); //리스트가 올라갈 때까지 자동커밋 막아놓기
+				conn = DBUtil.getConnection();
+				pst = conn.prepareStatement(query);
+				for(String fname :imageList) {
+					pst.setString(1, fname);
+					pst.setInt(2, pid);
+					
+					pst.addBatch();
+					pst.clearParameters();
+				}
+				
+				pst.executeBatch();
+				conn.commit();
+				pst.clearBatch();
+				
+				System.out.println("성공");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				try {
+					conn.rollback();
+				}catch(Exception e1){
+					e1.printStackTrace();
+				}
+			} finally {
+				DBUtil.dbClose(rs, pst, conn);
+			}
+			return result;
+		}
+		
+		
+	//승민	
+  
 		public Product selectProductById(int product_id){
 			Product viewProduct = new Product();
 			Connection connection = null;

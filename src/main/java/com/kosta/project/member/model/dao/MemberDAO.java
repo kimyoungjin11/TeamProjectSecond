@@ -10,9 +10,11 @@ import com.kosta.project.member.vo.Member;
 import com.kosta.project.util.DBUtil;
 
 public class MemberDAO {
-	static final String SQL_SELECT_BYID = "select * from tbl_user where user_id=?";
+	static final String SQL_SELECT_BYID = "select * from tbl_user where user_id = ?";
 	static final String SQL_INSERT_MEMBER = "insert into tbl_user values(?,?,?,?,sysdate,?,'user')";
+
 	static final String SQL_SELECT_NICK = "select * from tbl_user where nickname=?";
+
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
@@ -42,10 +44,11 @@ public class MemberDAO {
 	};
 
 	public Member selectOneMember(String userId) {
-		Member emp = null;
+		Member member = null;
 		conn = DBUtil.getConnection();
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_BYID);
+			System.out.println("selectOneMember:" + userId);
 			pst.setString(1, userId);
 			rs = pst.executeQuery();
 			while (rs.next()) {
@@ -56,6 +59,7 @@ public class MemberDAO {
 		} finally {
 			DBUtil.dbClose(rs, pst, conn);
 		}
+
 		return emp;
 	}
 
@@ -83,6 +87,7 @@ public class MemberDAO {
 	}
 
 	private Member makeEmp(ResultSet rs) throws SQLException {
+
 		Member emp = new Member();
 		emp.setUserId(rs.getString("user_Id"));
 		emp.setUserName(rs.getString("user_name"));
