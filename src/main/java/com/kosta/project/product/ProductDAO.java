@@ -23,54 +23,15 @@ static final String SQL_SELECT_BYID = "SELECT * FROM TBL_PRODUCT";
 static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
 		+ "VALUES (?, ?, PRODUCT_SEQ.nextval, ?, ?, ?, SYSDATE, '모집중', ?)";
-static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1"; 	
+static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
+static final String SQL_MAX_Product_ID = "select max(PRODUCT_ID) from tbl_product";
+static final String SQL_INSERT_PRODUCT_Images = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
 	ResultSet rs;
 	int result;
 	
-	public int insertProductImages(int pid , List<String> imageList) {
-	
-		int result = 0;
-		String sql = "insert into tbl_product_images values(img_seq.nextval, ?, ?)";
-		conn = DBUtil.getConnection();
-		try {
-			
-			pst = conn.prepareStatement(sql);
-			for(String fname :imageList) {
-				pst.setString(1, fname);
-				pst.setInt(2, pid);
-			}
-	 
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBUtil.dbClose(rs, pst, conn);
-		}
-
-		return result;
-	}
-	
-	public int maxProductNO() {
-		int product_id = 0;
-		String query = "select max(PRODUCT_ID) from tbl_product";
-		conn = DBUtil.getConnection();
-		 
-		try {
-			pst = conn.prepareStatement(query);
-			rs = pst.executeQuery();
-			while(rs.next()) {
-				product_id = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return product_id;
-	}
 	
 	public ArrayList<Product> selectAllProduct(){
 		ArrayList<Product> productList = new ArrayList<Product>();
@@ -127,7 +88,6 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 
 
 	//INSERT PRODUCT
-		//Member member = new Member();
 		
 		public int productInsert (Product product) {
 			int result = 0;
@@ -172,4 +132,68 @@ static final String SQL_CATEGORY_NAME = "SELECT * FROM TBL_CATEGORY ORDER BY 1";
 			}
 			return clist;
 	}
+		
+		
+		
+	//GET MAX PRODUCT ID	
+		
+		public int maxProductNO() {
+			int product_id = 0;
+			String query = SQL_MAX_Product_ID;
+			conn = DBUtil.getConnection();
+			 
+			try {
+				pst = conn.prepareStatement(query);
+				rs = pst.executeQuery();
+				while(rs.next()) {
+					product_id = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return product_id;
+		}
+		
+		
+	//INSERT PRODUCT IMAGES	
+	
+		public int insertProductImages(int pid , List<String> imageList) {
+			System.out.println(imageList);
+			int result = 0;
+			String query = SQL_INSERT_PRODUCT_Images;
+			
+			try {
+				conn.setAutoCommit(false); //리스트가 올라갈 때까지 자동커밋 막아놓기
+				conn = DBUtil.getConnection();
+				pst = conn.prepareStatement(query);
+				for(String fname :imageList) {
+					pst.setString(1, fname);
+					pst.setInt(2, pid);
+					
+					pst.addBatch();
+					pst.clearParameters();
+				}
+				
+				pst.executeBatch();
+				conn.commit();
+				pst.clearBatch();
+				
+				System.out.println("성공");
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+				try {
+					conn.rollback();
+				}catch(Exception e1){
+					e1.printStackTrace();
+				}
+			} finally {
+				DBUtil.dbClose(rs, pst, conn);
+			}
+			return result;
+		}
+		
+		
+		
 }
