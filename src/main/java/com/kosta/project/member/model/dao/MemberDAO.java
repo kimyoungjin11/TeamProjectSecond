@@ -52,7 +52,7 @@ public class MemberDAO {
 			pst.setString(1, userId);
 			rs = pst.executeQuery();
 			while (rs.next()) {
-				emp = makeEmp(rs);
+				member = makeEmp(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +60,7 @@ public class MemberDAO {
 			DBUtil.dbClose(rs, pst, conn);
 		}
 
-		return emp;
+		return member;
 	}
 
 	public int insertMember(Member member) {
