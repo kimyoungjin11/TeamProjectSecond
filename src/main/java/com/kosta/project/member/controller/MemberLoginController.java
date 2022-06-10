@@ -47,7 +47,7 @@ public class MemberLoginController extends HttpServlet {
 		//session.setAttribute("msg", "로그인되었습니다.");			
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		session.removeAttribute("msg");
-		request.getRequestDispatcher("/jsp/header.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/common.jsp").forward(request, response);
 		}
 
 		else if (member == null || !password.equals(member.getUserPassword())) {

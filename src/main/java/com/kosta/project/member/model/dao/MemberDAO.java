@@ -12,7 +12,7 @@ import com.kosta.project.util.DBUtil;
 public class MemberDAO {
 	static final String SQL_SELECT_BYID = "select * from tbl_user where user_id = ?";
 	static final String SQL_INSERT_MEMBER = "insert into tbl_user values(?,?,?,?,sysdate,?,'user')";
-	static final String SQL_SELECT_NICK = "select * from tbl_user where nickname='?'";
+	static final String SQL_SELECT_NICK = "select * from tbl_user where nickname=?";
 	Connection conn;
 	Statement st;
 	PreparedStatement pst;
@@ -23,9 +23,11 @@ public class MemberDAO {
 	public Member selectByNick(String nickName) {
 		Member member = null;
 		conn = DBUtil.getConnection();
+		System.out.println("커넥션3"+conn);
 		try {
 			pst = conn.prepareStatement(SQL_SELECT_NICK);
 			pst.setString(1, nickName);
+			System.out.println("닉네임" + nickName);
 			rs = pst.executeQuery();
 			while (rs.next()) {
 				member = makeEmp(rs);

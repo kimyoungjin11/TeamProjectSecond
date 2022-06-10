@@ -7,7 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>공동구매 플랫폼, N분의1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com"  >
@@ -107,9 +106,9 @@ a {
 
 </head>
 <body>
-  <%-- <%
+   <%
     String clientId = "eqagp0fQve1EtqpGZsux";//애플리케이션 클라이언트 아이디값";
-    String redirectURI = URLEncoder.encode("http://192.168.3.1/TeamProjectSecond/jsp/common.jsp", "UTF-8");
+    String redirectURI = URLEncoder.encode("http://localhost:9090/TeamProjectSecond/jsp/common.jsp", "UTF-8");
     SecureRandom random = new SecureRandom();
     String state = new BigInteger(130, random).toString();
     String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
@@ -118,7 +117,6 @@ a {
     apiURL += "&state=" + state;
     session.setAttribute("state", state);
  %>
-  <a href="<%=apiURL%>"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG"/></a> --%>
   <!--여기까지.네이버  -->
 	<div id="wrap">
 		<a href="index.jsp"><h1>N분의1</h1></a>
@@ -130,9 +128,10 @@ a {
 				<input class="input_login" type="text" name="userId" id="userId" placeholder="이메일주소를 입력하세요.">
 				<input class="input_login" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요.">
 				<div id="imgNaver" >
-				<input type="image" class="btn_login" alt="" src="../img/header/btnG_완성형2.png"  height=40px; >
+				<!-- <input type="image" class="btn_login" alt="" src="../img/header/btnG_완성형2.png"  height=40px; > -->
+                 <a href="<%=apiURL%>"><img height="50" src="../img/header/btnG_완성형2.png"/ class="btn_login"></a>
 				</div>
-				<input class="btn_login" type="submit" value="로그인">
+				<input class="btn_login" type="submit" value="로그인" >
 		</form>
 		<div id="link">
 			<div id="look_box">

@@ -1,4 +1,4 @@
-package com.kosta.project.product;
+package com.kosta.project.productInsert;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,16 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-
-import org.apache.tomcat.jdbc.pool.DataSource;
-
-import com.kosta.project.member.vo.Member;
+import com.kosta.project.product.Product;
 import com.kosta.project.product.vo.CategoryVO;
 import com.kosta.project.util.DBUtil;
 
-public class ProductDAO {
+public class ProductInsertServlet {
 static final String SQL_SELECT_BYID = "SELECT * FROM TBL_PRODUCT";
 static final String SQL_INSERT_PRODUCT = "INSERT INTO tbl_product (USER_ID, CATEGORY_ID, PRODUCT_ID, TITLE, CONTENT,\r\n"
 		+ "PRICE, REG_DATE, PRODUCT_STATUS, JOIN_NUMBER)\r\n"
