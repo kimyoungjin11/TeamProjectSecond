@@ -14,7 +14,6 @@ public class Product {
 	private int joinNumber;
 	private String userId;
 	private int category;
-	private int imageId;
 	
 	public Product() {
 		
@@ -23,7 +22,7 @@ public class Product {
 
 	public Product(int productId, String productTitle, String productContent, int wishCount,
 			       int viewCount, int price, Date reg_date,
-			String productStatus, int joinNumber, String userId, int category, int imageId) {
+			String productStatus, int joinNumber, String userId, int category) {
 		super();
 		this.productId = productId;
 		this.productTitle = productTitle;
@@ -36,7 +35,6 @@ public class Product {
 		this.joinNumber = joinNumber;
 		this.userId = userId;
 		this.category = category;
-		this.imageId = imageId;
 	}
 	public int getproductId() {
 		return productId;
@@ -99,12 +97,6 @@ public class Product {
 		this.category = category;
 	}
 	
-	public int getimageId() {
-		return category;
-	}
-	public void setimageId(int imageId) {
-		this.imageId = imageId;
-	}
 	
 	public int getViewCount() {
 		return viewCount;
