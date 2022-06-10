@@ -32,10 +32,21 @@ public class ProductService {
 	}
 	
 
+	//insert 후 productid 얻기(이미지 업로드 시 전달)
+	public int maxProductNO() {
+		return productDAO.maxProductNO();
+	}
+	
+	//이미지삽입
+	public int insertProductImages(int pid, List<String> imageList) {
+		return productDAO.insertProductImages(pid, imageList);
+
+
 	
 	public Product view(int productId) {
 		Product viewProduct = productDAO.selectProductById(productId);
 		return viewProduct;
+
 	}
 
 
