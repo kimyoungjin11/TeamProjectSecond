@@ -69,10 +69,10 @@ public class ProductInsertServlet extends HttpServlet {
 		String content = request.getParameter("content");
 	
 		HttpSession session = request.getSession();
-		Member member = (Member)session.getAttribute("loginMember");
-		/*
-		 * Member member = new Member(); member.setUserId("admin");
-		 */
+		//Member member = (Member)session.getAttribute("loginMember");
+		 Member member = new Member();
+		 member.setUserId("admin");
+
 		System.out.println(member);
 		product.setUserId(member.getUserId());
 		product.setCategory(categoryId);

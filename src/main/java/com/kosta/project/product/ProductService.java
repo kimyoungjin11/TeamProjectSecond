@@ -7,9 +7,15 @@ import com.kosta.project.product.vo.CategoryVO;
 public class ProductService {
 	ProductDAO productDAO = new ProductDAO();
 	
+
+	/* //상품 전체
+	 * public List<Product> listProduct(){ List<Product> productList =
+	 * productDAO.selectAllProduct(); return productList;
+	 */
 	
-	public List<Product> listProduct(){
-		List<Product> productList = productDAO.selectAllProduct();
+	//상품 검색
+	public List<Product> listProduct(String category_id, String keyword, String sort){
+		List<Product> productList = productDAO.selectAllProduct(category_id, keyword, sort);
 		return productList;
 	}
 	

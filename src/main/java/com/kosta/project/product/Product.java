@@ -21,7 +21,8 @@ public class Product {
 	}
 	
 
-	public Product(int productId, String productTitle, String productContent, int wishCount, int viewCount, int price, Date reg_date,
+	public Product(int productId, String productTitle, String productContent, int wishCount,
+			       int viewCount, int price, Date reg_date,
 			String productStatus, int joinNumber, String userId, int category, int imageId) {
 		super();
 		this.productId = productId;
