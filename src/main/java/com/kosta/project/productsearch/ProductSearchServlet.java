@@ -21,6 +21,7 @@ public class ProductSearchServlet extends HttpServlet {
 		
 		request.setAttribute("productList", productService.listProduct("%", "%", "asc"));
 		request.setAttribute("clist", productService.selectCategoryName());
+		
 		String nextPage = "/jsp/board/productsearch.jsp";
 
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

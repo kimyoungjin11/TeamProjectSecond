@@ -61,7 +61,7 @@ body {
 						<li>
 							<div id="product-img">
 								<span id="/TeamProjectSecond/product/view.do?productId=${productList.productId}" >${productList.productStatus}</span> 
-								<a href=""> <!-- <img src="#" /> -->
+								<a href="/TeamProjectSecond/product/view.do?productId=${productList.productId}"> <img src="#" />
 								</a>
 							</div>
 
@@ -98,6 +98,7 @@ body {
 				 }
 			 });
 		  });
+		  
 	  });
 	
 	
