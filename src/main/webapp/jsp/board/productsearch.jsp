@@ -24,6 +24,9 @@ body {
 <body>
 
 	<div class="container">
+	 전체건수: ${boardSize} <br>
+ <c:set var="listSize" value="${boardDatas.size()}" ></c:set>
+ 
 
 		<div class="form_group">
 			<label>카테고리</label> 

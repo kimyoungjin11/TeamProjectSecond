@@ -34,9 +34,12 @@ public class ProductSearchServlet extends HttpServlet {
 	    String category_id = request.getParameter("category_id");
 	    String keyword = request.getParameter("keyword");
 	    String sort = request.getParameter("sort");
+	    
 	    System.out.println(category_id);
 	    System.out.println(keyword);
 	    System.out.println(sort);
+	    
+	    
 	    
 	    ProductService productService = new ProductService();
 		request.setAttribute("productList", productService.listProduct(category_id, keyword, sort));
