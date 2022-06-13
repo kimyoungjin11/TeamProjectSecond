@@ -1,8 +1,24 @@
 @charset "UTF-8";
 
+html, body {
+	margin:0; padding:0;
+	height:100%;
+}
+
+#wrap {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+section {
+	flex:1;
+}
+
 h1, a, p, li, em, input {
 	font-family: 'Nanum Gothic', sans-serif;
 	color: black;
+	letter-spacing: -2px;
 }
 
 .skip {
@@ -43,6 +59,7 @@ header {
 	width: 100%;
 	height: 80px;
 	background-color: #ffea00;
+	position: fixed;
 }
 
 #header_wrap {
@@ -52,31 +69,28 @@ header {
 }
 
 #header_left {
-	margin-right:30px;
+	margin-right:70px;
+	margin-top: 15px;
 	float: left;
 }
 
 
 .dropbtn {
-
-  color: white;
-  font-size: 16px;
-  border: none;
-  padding-top:20px;
-  padding-left: 15px;
+	display: inline-block;
+  	padding-left: 15px;
 }
 
 .dropdown {
   position: relative;
   display: inline-block; 
-  width: 40px;
+  width: 50px;
   height: 40px;
 
 }
 
 .dropdown-content {
   display: none;
-  top: 80px;
+  top: 60px;
   position: absolute;
   background-color: #ffea00;
   min-width: 180px;
@@ -84,27 +98,18 @@ header {
 }
 
 .dropdown-content li {
-	padding : 15px;
+	padding : 10px;
 	
 }
 
 .dropdown-content a {
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   color: black;
   padding: 3px;
   text-decoration: none;
-  display: block;
-  transition: text-decoration 0.8s;
+  display: inline-block;
 }
-
-.dropdown-content li a:hover { 
-	
-text-decoration: underline;
-font-weight: 900;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
 
 
 .dropdown {
@@ -119,26 +124,23 @@ font-weight: 900;}
 #btn_menu img {
 	display: inline-block;
 	width: 30px;
+	margin-top:5px;
 }
-
-
-
 
 #cateogry{
 	position: absolute;
-	top: 10px;
-	display: inline;
+	top: 0px;
+	display: inline-block;
 	width: 300px;
-	background-color: #ececec;
 }
 	
 	
-	
-
+#logo {
+	margin-top: 15px;
+}
 #logo img {
 	height: 45px;
-	margin-top: 5px;
-	margin-right:15px;
+	
 }
 
 
@@ -206,25 +208,19 @@ font-weight: 900;}
 section {
 	width: 1024px;
 	margin: 0 auto;
-	padding-top:50px;
+	padding: 100px 30px;
 }
-section h1 {
-	font-size: 24px;
-	font-weight: 900;
-	font-stretch: -0.1px;
-}
-
-#container
 
 
 /*footer*/
 footer {
-	height:320px;
-	position:absolute;
+	height:360px;
 	width:100%;
-	bottom:0;
-    background-color:#eaeaea;
+	background-color:#eaeaea;
+
 }
+
+
 #footer_wrap {
     width:1024px; margin:0 auto;
     padding: 30px;

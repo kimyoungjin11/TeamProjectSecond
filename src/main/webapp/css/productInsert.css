@@ -1,20 +1,17 @@
 @charset "UTF-8";
-h1 {
+#productInsert h1 {
+	
 	font-size: 36px;
-	margin-top: 50px;
+	margin: 50px 0;
 }
 
-section {
-	width: 1024px;
-	margin: 0 auto;
-}
-
-form {
+#productInsert form {
 	display: inline-block;
-	width: 100%;
+	padding: 100px 30px;
 	border: 2px solid #ececec;
 	border-radius: 15px;
 	padding: 50px;
+	margin: 20px;
 }
 
 .form_group {
@@ -25,6 +22,7 @@ form {
 	margin-right: 15px;
 	
 }
+
 
 .form_group label {
 	display: inline-block;
@@ -46,10 +44,12 @@ form {
 }
 .insert_btn {
 	width: 100%;
+
 }
 .insert_btn input {
+	position: relative;
 	font-size: 18px;
-	left: 50%;
+	left: 35%;
 	display: inline-block;
 	width: 90px;
 	height: 30px;

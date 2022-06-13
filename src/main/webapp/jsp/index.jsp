@@ -1,75 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStreamReader" %>
+  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>공동구매 플랫폼, N분의1</title>
+<title>함께하면 가벼운 소비, N분의1</title>
+<style>
+section {
+	
+}
+</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel=stylesheet href="../css/reset.css">
+<link rel=stylesheet href="../css/common.css?after">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* { 
-	text-align:center;
-	font-family: 'Nanum Gothic', sans-serif;
-}
-body {
-	background-color: #ffea00;
-}
-#wrap {
-	padding-top : 300px;
-	width: 100%;
-	
-	margin: 0 auto;
-}
-
-
-h1 {
-	font-size: 42px;
-	font-weight: 900;
-	margin-bottom: 15px;
-}
-
-p {
-	font-size: 18px;
-	margin-bottom: 30px;
-}
-
-.land_button {
-
-	font-size: 16px;
-	letter-spacing: -1px;
-	display: block;
-	width: 350px; height: 45px;
-	background-color: white;
-	border-radius: 15px;
-	border: none;
-	margin : 0 auto;
-	margin-bottom : 10px;
-}
-
-.land_button:hover {
-	background-color: black;
-	color: white;
-}
-
-a {
-	text-decoration: none;
-}
-
-</style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <%
+    String clientId = "eqagp0fQve1EtqpGZsux";//애플리케이션 클라이언트 아이디값";
+    String clientSecret = "24NR69ONml";//애플리케이션 클라이언트 시크릿값";
+    String code = request.getParameter("code");
+    System.out.println("code: "+code);
+    String state = request.getParameter("state");
+    System.out.println("state: "+state);
+    String redirectURI = URLEncoder.encode("http://localhost:9090/TeamProjectSecond/jsp/common.jsp", "UTF-8");
+    String apiURL;
+    apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
+    apiURL += "client_id=" + clientId;
+    apiURL += "&client_secret=" + clientSecret;
+    apiURL += "&redirect_uri=" + redirectURI;
+    apiURL += "&code=" + code;
+    apiURL += "&state=" + state;
+    String access_token = "";
+    String refresh_token = "";
+    System.out.println("apiURL="+apiURL);
+    try {
+      URL url = new URL(apiURL);
+      HttpURLConnection con = (HttpURLConnection)url.openConnection();
+      con.setRequestMethod("GET");
+      int responseCode = con.getResponseCode();
+      BufferedReader br;
+      System.out.print("responseCode="+responseCode);
+      if(responseCode==200) { // 정상 호출
+        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+      } else {  // 에러 발생
+        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+      }
+      String inputLine;
+      StringBuffer res = new StringBuffer();
+      while ((inputLine = br.readLine()) != null) {
+        res.append(inputLine);
+      }
+      br.close();
+      if(responseCode==200) {
+/*         out.println(res.toString()); */
+      }
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  %>
 </head>
 <body>
 	<div id="wrap">
-		<h1>N분의1</h1>
-		<p>함께하면 가벼운 소비,<br>세상의 모든 소비를 나눠보세요.</p>
-		<form>
-			<a href="login.jsp"><input class="land_button" type="button" value="로그인"></a>
-			<a href="signup.jsp"><input class="land_button" type="button" value="회원가입"></a>
-		</form>
+		<%@ include file="/jsp/header.jsp"%>
+			
+			<!-- SECTION -->
+				
+		<section>
+			<div id="here">
+			</div>
+		</section>
+				
+		<%@ include file="/jsp/footer.jsp"%>
 	</div>
+	<script>
+	
+	
+		  $(function(){
+			  
+			  
+			  $.ajax({
+					 url:"../listProduct.do",
+					 data:{"category_id":"%",
+							"keyword":"%", "sort":"desc"},
+					 type:"post",
+					 success:function(responseData){
+						 
+						 $("#here").html(responseData);
+					 }
+				 });
+			  
+			  
+			  
+			  $("#input_search").on("keydown", function(event){
+				  
+				  if(event.keyCode == 13) {  
+						 $.ajax({
+							 url:"../listProduct.do",
+							 data:{"category_id":"%",
+									"keyword":$(this).val(), "sort":"desc"},
+							 type:"post",
+							 success:function(responseData){
+								 
+								 $("#here").html(responseData);
+							 }
+						 });
+				  }
+			  });
+		  });
+		
+		</script>
 </body>
 </html>

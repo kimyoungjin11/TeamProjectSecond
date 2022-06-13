@@ -9,10 +9,32 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel=stylesheet href="../../css/reset.css">
-<link rel=stylesheet href="../../css/common.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	$(function(){
+		//변수저장
+		var $category = $("#category");
+		var $categoryBtn = $("#btn_menu");
+		
+		 
+        /*category open*/
+        $categoryBtn.mouseover(function() {
+            $category.fadeIn();
+        });
+        $category.mouseover(function() {
+            $category.css('display', 'inline-block');
+        });
+        $categoryBtn.mouseout(function() {
+            $category.css('display', 'none');
+        });
+        $category.mouseout(function() {
+            $category.css('display', 'none');
+        });
+
+	});
+</script>
+
 </head>
 <body>
 	<!-- TOP버튼 -->
@@ -38,21 +60,21 @@
 							</ul>
 						</div>
 					</div>
-					<a href="" id="logo"><img src="../img/header/logo.png" alt="logo"></a>
+					<a href="index.jsp" id="logo"><img src="../img/header/logo.png" alt="logo"></a>
 				</div>
 				<div id="header_center">
 					<div id="search">
-						 
-							<input type="text" placeholder="검색어를 입력하세요." name="keyword" id="input_search">
+						<form action="search.do">
+							<input type="text" placeholder="검색어를 입력하세요." name="input_search">
 							<a href="" id="btn_search"><img src="../img/header/search.png"
 								alt="search"></a>
-						 
+						</form>
 					</div>
 				</div>
 				<div id="header_right">
 
 					<c:if test="${loginMember != null}">
-					<c:set var= "path" value="${pageContext.request.contextPath }"/>
+					<c:set var= "path" value="${pageContext.request.contextPath}"/>
 					<a id="btn_mypage"><img src="../img/header/mypage.png" alt="mypage">마이페이지</a> 
 					
 					<a href="${path}/member/logout" id="btn_logout"><img src="../img/header/logout.png" alt="logout">로그아웃</a>
@@ -61,6 +83,5 @@
 				</div>
 			</div>
 		</header>
-		
 </body>
 </html>
