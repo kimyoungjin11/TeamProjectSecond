@@ -40,7 +40,7 @@ public class ProductService {
 	//이미지삽입
 	public int insertProductImages(int pid, List<String> imageList) {
 		return productDAO.insertProductImages(pid, imageList);
-
+	}
 
 	
 	public Product view(int productId) {

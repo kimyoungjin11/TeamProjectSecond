@@ -21,7 +21,7 @@ section {
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel=stylesheet href="../css/reset.css">
-<link rel=stylesheet href="../css/common.css">
+<link rel=stylesheet href="../css/common.css?after">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <%
@@ -69,18 +69,54 @@ section {
   %>
 </head>
 <body>
-	<!-- <div id="wrap"> -->
+	<div id="wrap">
 		<%@ include file="/jsp/header.jsp"%>
 			
 			<!-- SECTION -->
 				
-			<section>
-				<section id="">
-					<h1>현명한 소비자들의 자발적 공동구매 플랫폼, N분의 1</h1>
-				</section>
-			</section>
+		<section>
+			<div id="here">
+			</div>
+		</section>
 				
 		<%@ include file="/jsp/footer.jsp"%>
-	<!-- </div> -->
+	</div>
+	<script>
+	
+	
+		  $(function(){
+			  
+			  
+			  $.ajax({
+					 url:"../listProduct.do",
+					 data:{"category_id":"%",
+							"keyword":"%", "sort":"desc"},
+					 type:"post",
+					 success:function(responseData){
+						 
+						 $("#here").html(responseData);
+					 }
+				 });
+			  
+			  
+			  
+			  $("#input_search").on("keydown", function(event){
+				  
+				  if(event.keyCode == 13) {  
+						 $.ajax({
+							 url:"../listProduct.do",
+							 data:{"category_id":"%",
+									"keyword":$(this).val(), "sort":"desc"},
+							 type:"post",
+							 success:function(responseData){
+								 
+								 $("#here").html(responseData);
+							 }
+						 });
+				  }
+			  });
+		  });
+		
+		</script>
 </body>
 </html>
