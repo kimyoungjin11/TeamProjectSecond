@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kosta.project.reply.Reply;
+import com.kosta.project.reply.ReplyService;
+
 
 @WebServlet("*.do")
 public class ProductController extends HttpServlet {
@@ -18,10 +21,13 @@ public class ProductController extends HttpServlet {
 	
 	ProductService productService;
 	Product product;
+	Reply reply;
+	ReplyService replyService;
 	
 	
 	public void init() throws ServletException{
 		productService = new ProductService();
+		replyService = new ReplyService();
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -51,15 +57,15 @@ public class ProductController extends HttpServlet {
 			} else if(action.equals("/product/view.do")) {
 				System.out.println("view호출");
 				String productId = request.getParameter("productId");
+				List<Reply> replylist = replyService.replyList(Integer.parseInt(productId));
 				product = productService.view(Integer.parseInt(productId));
 				request.setAttribute("productView", product);
+				request.setAttribute("replyList", replylist);
 				nextPage = "/jsp/board/boardDetail.jsp";
-			} else if(action.equals("reply.do")) {
-				System.out.println("reply호출");
+			} else if(action.equals("/writeReply.do")) {
+				System.out.println("reply작성");
 				String productId = request.getParameter("productId");
-				product = productService.view(Integer.parseInt(productId));
-				request.setAttribute("productView", product);
-				nextPage = "/jsp/board/boardDetail.jsp";
+				nextPage = "/product/view.do?productId="+productId;
 			}
 			
 			
@@ -69,4 +75,6 @@ public class ProductController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

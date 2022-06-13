@@ -67,31 +67,31 @@
 
 
 		<div class="card">
-			<form method="POST">
-				<input type="hidden" id="userId" value="${principal.user.id}" /> <input
-					type="hidden" id="boardId" value="${board.id}" />
+			<form>
+				<input type="hidden" id="userId" value="${productView.userId}" /> <input
+					type="hidden" id="boardId" value="${productView.productId}" />
 				<div class="card-body">
 					<textarea style="width:90%; display:inline-block;" id="reply-content" class="form-control" rows="1"></textarea>
 					<button type="button" style="float:right; " id="btn-reply" class="btn btn-primary">댓글등록</button>
-				</div>
-			
+				</div>				
 			</form>
+			
 		</div>
 
 		<div class=board-reply-wrapper>
 			<div class="card">
 				<div class="card-header">댓글 리스트</div>
 				<ul id="reply--box" class="list-group">
-					<c:forEach var="reply" items="${board.replys}">
-						<li id="reply-${reply.id}"
+					<c:forEach var="reply" items="${replyList}">
+						<li id="reply-${reply.reply_ID}"
 							class="list-group-item d-flex justify-content-between">
-							<div>aaaaaa</div>
+							<div>${reply.reply_CONTENT}</div>
 							<div class="d-flex">
 								<div class="font-italic">
-									작성자 : ${reply.user.nickname} <br /> ${reply.createDate} &nbsp;
+									작성자 : ${reply.user_ID} <br /> ${reply.reply_DATE} &nbsp;
 								</div>
-								<c:if test="${board.user.id == principal.user.id}">
-									<button onclick="index.replyDelete(${board.id}, ${reply.id})"
+								<c:if test="${productView.userId == principal.user.id}">
+									<button onclick="index.replyDelete(${productView.productId}, ${reply.reply_ID})"
 										class="btn btn-warning badge">삭제</button>
 								</c:if>
 							</div>
@@ -102,27 +102,38 @@
 		</div>
 	</div>
 	
-	<script>
-	$("#btn-reply").on(click, function() {
-		let data = {
-			userId: $("userId").val(),
-			boardId: $("boardId").val(),
-			content: $("reply-content").val()
-		};
-		$.ajax({
-			url: '<%=request.getContextPath() %>/reply.do',
-			type: 'POST',
-			data: JSON.stringify(data),
-			dataType: 'json'
-		}).done(function(resp) {
-			alert("댓글작성이 완료되었습니다.");
-			location.href = `<%=request.getContextPath() %>/reply.do`;
-		}).fail(function(error) {
-			alert(JSON.stringify(error));
-		});
-	});
-	</script>
-	
+<!-- 	<script src="../../js/board.js"></script>
+ -->
+ <script>
+ $("#btn-reply").on('click', function() {
+	 let data = {
+		userId: $("#userId").val(),
+		boardId: $("#boardId").val(),
+		content: $("#reply-content").val()
+		
+    };
+	console.log(data);
+	if($("#reply-content").val().trim() === ""){
+			
+    		alert("댓글을 입력하세요.");
+    		$("#reply-content").val("").focus();
+    }else{
+    $.ajax({
+        type: "POST",
+        url: "${contextPath}/writeReply.do",
+        data: JSON.stringify(data),
+        contentType:"application/json; charset=utf-8",
+        dataType:"json"
+    }).done(function(resp){
+        alert("글쓰기가 완료되었습니다.");
+        location.href="/";
+
+    }).fail(function(error){
+        alert(JSON.stringify(error));
+    });
+    }
+});
+ </script>
 
 </body>
 </html>

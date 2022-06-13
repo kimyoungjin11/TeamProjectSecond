@@ -8,17 +8,18 @@ public class Reply {
 	private Date reply_DATE;
 	private int product_ID;
 	private String user_ID;
+	private String reply_CONTENT;
 	
 	
 	
 	
-	
-	public Reply(int reply_ID, Date reply_DATE, int product_ID, String user_ID) {
+	public Reply(int reply_ID, Date reply_DATE, int product_ID, String user_ID, String reply_CONTENT) {
 		super();
 		this.reply_ID = reply_ID;
 		this.reply_DATE = reply_DATE;
 		this.product_ID = product_ID;
 		this.user_ID = user_ID;
+		this.reply_CONTENT = reply_CONTENT;
 	}
 	
 	
@@ -52,6 +53,12 @@ public class Reply {
 	}
 	public void setUser_ID(String user_ID) {
 		this.user_ID = user_ID;
+	}
+	public String getReply_CONTENT() {
+		return reply_CONTENT;
+	}
+	public void setReply_CONTENT(String reply_CONTENT) {
+		this.reply_CONTENT = reply_CONTENT;
 	}
 
 
