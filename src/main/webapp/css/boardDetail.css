@@ -67,7 +67,11 @@ img {
 
 .board-wrapper .title-wrapper #item-info #item-title #item-price {
     font-size: 35px;
+    display:inline-block;
     margin: 0px 0px 30px;
+}
+.board-wrapper .title-wrapper #item-info #item-title #join-number{
+	display:inline-block;
 }
 
 .board-wrapper .title-wrapper #item-info #item-ect {
@@ -133,6 +137,9 @@ element.style {
 
 main .mainContainer .card{
     font-size:14px;
+}
+main .mainContainer .card .card-body #reply-content{
+    width:80%;
 }
 
 main .mainContainer .card #reply--box .d-flex{
