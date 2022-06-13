@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel=stylesheet href="../../css/reset.css">
+<link rel=stylesheet href="../../css/common.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -40,11 +42,11 @@
 				</div>
 				<div id="header_center">
 					<div id="search">
-						<form action="search.do">
-							<input type="text" placeholder="검색어를 입력하세요." name="input_search">
+						 
+							<input type="text" placeholder="검색어를 입력하세요." name="keyword" id="input_search">
 							<a href="" id="btn_search"><img src="../img/header/search.png"
 								alt="search"></a>
-						</form>
+						 
 					</div>
 				</div>
 				<div id="header_right">
@@ -59,5 +61,6 @@
 				</div>
 			</div>
 		</header>
+		
 </body>
 </html>
