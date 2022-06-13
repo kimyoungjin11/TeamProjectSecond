@@ -138,6 +138,9 @@ element.style {
 main .mainContainer .card{
     font-size:14px;
 }
+main .mainContainer .card .card-body #reply-content{
+    width:80%;
+}
 
 main .mainContainer .card #reply--box .d-flex{
     font-size:14px;

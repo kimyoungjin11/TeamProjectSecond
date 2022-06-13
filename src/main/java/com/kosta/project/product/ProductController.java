@@ -54,7 +54,15 @@ public class ProductController extends HttpServlet {
 				product = productService.view(Integer.parseInt(productId));
 				request.setAttribute("productView", product);
 				nextPage = "/jsp/board/boardDetail.jsp";
+			} else if(action.equals("reply.do")) {
+				System.out.println("reply호출");
+				String productId = request.getParameter("productId");
+				product = productService.view(Integer.parseInt(productId));
+				request.setAttribute("productView", product);
+				nextPage = "/jsp/board/boardDetail.jsp";
 			}
+			
+			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);
 		} catch(Exception e) {
