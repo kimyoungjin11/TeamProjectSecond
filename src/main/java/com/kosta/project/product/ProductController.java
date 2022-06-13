@@ -62,12 +62,11 @@ public class ProductController extends HttpServlet {
 				request.setAttribute("productView", product);
 				request.setAttribute("replyList", replylist);
 				nextPage = "/jsp/board/boardDetail.jsp";
-			} else if(action.equals("/writeReply.do")) {
-				System.out.println("reply작성");
-				String productId = request.getParameter("productId");
-				nextPage = "/product/view.do?productId="+productId;
-			}
-			
+			} /*
+				 * else if(action.equals("/writeReply.do")) { System.out.println("reply작성");
+				 * String productId = request.getParameter("productId"); nextPage =
+				 * "/product/view.do?productId="+productId; }
+				 */
 			
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);

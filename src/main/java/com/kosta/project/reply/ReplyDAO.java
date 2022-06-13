@@ -69,49 +69,28 @@ public class ReplyDAO {
 		return replyList;
 	}
 
-	public Reply writeReply(int boardId) {
-		static final String ReplyWrite = "INSERT INTO"
-				+ "TBL_REPLY VALUES (sysdate, ?, '?', '?')";
-
-		Reply reply = null;
-		Connection connection = null;
-		pst = null;
-		rs = null;
-		try {
-			connection = DBUtil.getConnection();
-			pst = connection.prepareStatement(ReplyWrite);
-			pst.setInt(1, boardId);
-			pst.set
-			rs = pst.executeQuery();
-			
-			int replyId = rs.getInt("reply_ID");
-			Date replyDate = rs.getDate("reply_DATE");
-			int productId = rs.getInt("product_ID");
-			String userId = rs.getString("user_ID");
-			String content = rs.getString("reply_CONTENT");
-
-			reply = new Reply();
-			reply.setUser_ID(userId);
-			reply.setProduct_ID(productId);
-			reply.setReply_DATE(replyDate);
-			reply.setReply_ID(replyId);
-			reply.setReply_CONTENT(content);
-			System.out.println(reply.toString());
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null)
-					rs.close();
-				if (pst != null)
-					pst.close();
-				if (conn != null)
-					conn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return reply;
-	}
+	/*
+	 * public Reply writeReply(int boardId) { static final String ReplyWrite =
+	 * "INSERT INTO" + "TBL_REPLY VALUES (sysdate, ?, '?', '?')";
+	 * 
+	 * Reply reply = null; Connection connection = null; pst = null; rs = null; try
+	 * { connection = DBUtil.getConnection(); pst =
+	 * connection.prepareStatement(ReplyWrite); pst.setInt(1, boardId); pst.set rs =
+	 * pst.executeQuery();
+	 * 
+	 * int replyId = rs.getInt("reply_ID"); Date replyDate =
+	 * rs.getDate("reply_DATE"); int productId = rs.getInt("product_ID"); String
+	 * userId = rs.getString("user_ID"); String content =
+	 * rs.getString("reply_CONTENT");
+	 * 
+	 * reply = new Reply(); reply.setUser_ID(userId);
+	 * reply.setProduct_ID(productId); reply.setReply_DATE(replyDate);
+	 * reply.setReply_ID(replyId); reply.setReply_CONTENT(content);
+	 * System.out.println(reply.toString());
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); } finally { try { if (rs !=
+	 * null) rs.close(); if (pst != null) pst.close(); if (conn != null)
+	 * conn.close(); } catch (Exception e2) { e2.printStackTrace(); } } return
+	 * reply; }
+	 */
 }
