@@ -21,8 +21,8 @@ public class ProductSearchServlet extends HttpServlet {
 		
 		request.setAttribute("productList", productService.listProduct("%", "%", "asc"));
 		request.setAttribute("clist", productService.selectCategoryName());
-		
-		String nextPage = "/jsp/board/productsearch.jsp";
+		//String nextPage = "/jsp/board/productsearch.jsp";
+		String nextPage = "/jsp/board/common2.jsp";
 
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);
@@ -34,12 +34,9 @@ public class ProductSearchServlet extends HttpServlet {
 	    String category_id = request.getParameter("category_id");
 	    String keyword = request.getParameter("keyword");
 	    String sort = request.getParameter("sort");
-	    
 	    System.out.println(category_id);
 	    System.out.println(keyword);
 	    System.out.println(sort);
-	    
-	    
 	    
 	    ProductService productService = new ProductService();
 		request.setAttribute("productList", productService.listProduct(category_id, keyword, sort));

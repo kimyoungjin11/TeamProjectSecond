@@ -2,8 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-
+<!-- 
+깃허브 테스트 view2
+ -->
+ 
+ 
+ 
 <div class="row">
 	<ul class="list-wrapper">
 
