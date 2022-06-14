@@ -64,10 +64,13 @@ public class ProductController extends HttpServlet {
 				request.setAttribute("productView", product);
 				request.setAttribute("replyList", replylist);
 				nextPage = "/jsp/board/boardDetail.jsp";
-			} else if (action.equals("/writeReply.do")) {
-				int productId = Integer.parseInt(request.getParameter("productId"));
-				String userId = request.getParameter("userId");
-			}
+			} /*
+				 * else if (action.equals("/writeReply.do")) { int productId =
+				 * Integer.parseInt(request.getParameter("boardId")); String userId =
+				 * request.getParameter("userId"); String content =
+				 * request.getParameter("reply-content"); System.out.println(productId+ "," +
+				 * userId + "," + content); }
+				 */
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 			dispatch.forward(request, response);

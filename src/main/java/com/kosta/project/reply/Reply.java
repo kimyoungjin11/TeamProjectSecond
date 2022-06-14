@@ -66,7 +66,7 @@ public class Reply {
 	@Override
 	public String toString() {
 		return "Reply [reply_ID=" + reply_ID + ", reply_DATE=" + reply_DATE + ", product_ID=" + product_ID
-				+ ", user_ID=" + user_ID + "]";
+				+ ", user_ID=" + user_ID + ", content=" + reply_CONTENT + "]";
 	}
 
 	
