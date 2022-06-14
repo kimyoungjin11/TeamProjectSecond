@@ -22,7 +22,7 @@ public class ProductSearchServlet extends HttpServlet {
 		request.setAttribute("productList", productService.listProduct("%", "%", "asc"));
 		request.setAttribute("clist", productService.selectCategoryName());
 		//String nextPage = "/jsp/board/productsearch.jsp";
-		String nextPage = "/jsp/board/common2.jsp";
+		String nextPage = "/jsp/index.jsp";
 
 		RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);
 		dispatch.forward(request, response);

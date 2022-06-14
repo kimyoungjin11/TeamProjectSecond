@@ -1,9 +1,14 @@
 @charset "UTF-8";
 
-html, body {
+html {
 	margin:0; padding:0;
 	height:100%;
 }
+body{
+display: flex;
+position:absolute;
+}
+
 
 #wrap {
 	display: flex;
@@ -202,13 +207,29 @@ header {
 
 
 
-
-
 /*section*/
 section {
 	width: 1024px;
 	margin: 0 auto;
 	padding: 100px 30px;
+}
+
+/*body*/
+
+	
+.section-body
+{
+background-color: #f9f9f9;
+position:absolute;
+z-idex: inherit;
+text-align: center;
+	height:100%;
+}
+
+.searchbody{
+position:absolute;
+z-idex: inherit;
+text-align: center;
 }
 
 
