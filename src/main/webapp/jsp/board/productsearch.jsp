@@ -24,12 +24,8 @@ body {
 
 </head>
 <body>
-
-
-
-
-
-<!-- -------------------------------------------------------------------------------------------------------------------------------------------------search -->
+<div id="wrap">
+<%-- <%@ include file = "../header.jsp" %> --%>
 	<div class="container">
 
 		<div class="form_group">
@@ -41,12 +37,6 @@ body {
 				</c:forEach>
 			</select>
 
-
-
-			<!-- 				
-				<a href="이동주소">보이지</a><br>
-                <a href="이동주소 ex boardInsert.do"><img src="이미지경로"></a>
-			-->
 			<input type="search" name="keyword"  id="keyword"> SORT:
 			<fieldset style="display: inline;">
 				<input type="radio" name="productSort" value="desc"
@@ -113,31 +103,6 @@ body {
 	</script>
 	
 <%-- <%@ include file = "../footer.jsp" %> --%>
-<%--  <jsp:include page="../footer.jsp"/> --%>
-
-<%-- 풋터 인클루드 테스트 =>실패(css 정리)----------------------------------------------------------------------------------footer-----------
-
-		<footer>
-                <div id="footer_wrap">
-                    <div id="footer_top">
-                        <ul>
-                            <li><a href="#">회사소개</a></li>
-                            <li><a href="#">자주 묻는 질문</a></li>
-                            <li><a href="#"><em>고객센터</em></a></li>
-                            <li><a href="#"><em>이용약관</em></a></li>
-                            <li><a href="#"><em>개인정보처리방침</em></a></li>
-                            <li><a href="#">이메일무단수집거부</a></li>
-                            <li><a href="#">제휴/제안</a></li>
-                        </ul>
-                    </div>
-                    <div id="footer_bottom">
-                    	<a href="#"><img src="../img/header/logo.png" alt="n분의1"></a>
-                        <p>서울사업본부 : 서울특별시 금천구 가산동 가산디지털1로 70 (TEL. 02-6000-1111)</p>
-                        <p>Copyright&copy;N분의1 All rights reserved.</p>
-                    </div>
-                </div>  
-        </footer>
-
-------------------------------------------------------------------------------------------------------------------------------------------------- --%>	
+</div>
 </body>
 </html>

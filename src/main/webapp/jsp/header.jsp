@@ -83,5 +83,44 @@
 				</div>
 			</div>
 		</header>
+		
+				<script>
+			$(function() {
+
+				$.ajax({
+					url : "../listProduct.do",
+					data : {
+						"category_id" : "%",
+						"keyword" : "%",
+						"sort" : "desc"
+					},
+					type : "post",
+					success : function(responseData) {
+
+						$("#here").html(responseData);
+					}
+				});
+
+				$("#input_search").on("keydown", function(event) {
+
+					if (event.keyCode == 13) {
+						$.ajax({
+							url : "../listProduct.do",
+							data : {
+								"category_id" : "%",
+								"keyword" : $(this).val(),
+								"sort" : "desc"
+							},
+							type : "post",
+							success : function(responseData) {
+
+								$("#here").html(responseData);
+							}
+						});
+					}
+				});
+			});
+		</script>
+		
 </body>
 </html>
