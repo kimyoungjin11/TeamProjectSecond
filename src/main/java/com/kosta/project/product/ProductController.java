@@ -65,9 +65,8 @@ public class ProductController extends HttpServlet {
 				request.setAttribute("replyList", replylist);
 				nextPage = "/jsp/board/boardDetail.jsp";
 			} else if (action.equals("/writeReply.do")) {
-				System.out.println("reply작성");
-				String productId = request.getParameter("productId");
-				
+				int productId = Integer.parseInt(request.getParameter("productId"));
+				String userId = request.getParameter("userId");
 			}
 
 			RequestDispatcher dispatch = request.getRequestDispatcher(nextPage);

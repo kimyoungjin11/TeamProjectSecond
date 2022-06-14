@@ -78,9 +78,9 @@ public class ReplyDAO {
 		try {
 			connection = DBUtil.getConnection();
 			pst = conn.prepareStatement(ReplyWrite);
-			pst.setString(1, reply.getUser_ID());
-			pst.setInt(2, reply.getProduct_ID());
-			
+			pst.setInt(1, reply.getProduct_ID());
+			pst.setString(2, reply.getUser_ID());
+			pst.setString(3, reply.getReply_CONTENT());
 	
 			result = pst.executeUpdate();
 

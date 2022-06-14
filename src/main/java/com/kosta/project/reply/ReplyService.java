@@ -12,7 +12,6 @@ public class ReplyService {
 	}
 	
 	public void create(Reply reply) {
-		/*
-		 * replyDAO.create(reply);
-		 */	}
+		replyDAO.writeReply(reply);
+		}
 }
