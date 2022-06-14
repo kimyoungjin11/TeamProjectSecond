@@ -67,6 +67,7 @@ body {
 									id="price">${productList.price}원</span> 
 									<%-- <span id="userid">${productList.userId}</span> --%>
 								<span id="date">${productList.reg_date}</span>
+								<span class="godd" id="viewCount">조회수:${productList.viewCount}</span>
 
 							</div>
 						</li>
