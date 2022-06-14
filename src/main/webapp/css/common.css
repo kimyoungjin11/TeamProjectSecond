@@ -97,10 +97,11 @@ header {
   z-index: 1;
 }
 
-.dropdown-content li {
+.dropdown-content > ul > li {
 	padding : 10px;
 	
 }
+
 
 .dropdown-content a {
   width: 100%;
@@ -111,6 +112,9 @@ header {
   display: inline-block;
 }
 
+.dropdown-content a:hover {
+	font-weight: 900;
+}
 
 .dropdown {
 	margin-right: 80px;
