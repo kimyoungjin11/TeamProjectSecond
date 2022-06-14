@@ -21,7 +21,7 @@
 		<jsp:include page="header.jsp"></jsp:include>
 			
 			<!-- SECTION -->
-				
+			
 		<section>
 			<div id="here">
 			</div>
@@ -31,8 +31,7 @@
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 	<script>
-	
-	
+
 		  $(function(){
 			  
 			  
@@ -47,8 +46,7 @@
 					 }
 				 });
 			  
-			  
-			  
+
 			  $("#input_search").on("keydown", function(event){
 				  
 				  if(event.keyCode == 13) {  

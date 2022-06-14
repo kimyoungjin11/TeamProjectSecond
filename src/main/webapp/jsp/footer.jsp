@@ -14,7 +14,7 @@
                         </ul>
                     </div>
                     <div id="footer_bottom">
-                    	<a href="#"><img src="../img/header/logo.png" alt="n분의1"></a>
+                    	<a href="#"><img src="../img/header/logo.png" alt="N분의1"></a>
                         <p>서울사업본부 : 서울특별시 금천구 가산동 가산디지털1로 70 (TEL. 02-6000-1111)</p>
                         <p>Copyright&copy;N분의1 All rights reserved.</p>
                     </div>

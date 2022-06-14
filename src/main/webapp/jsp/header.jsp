@@ -46,7 +46,7 @@
 				<div id="header_center">
 					<div id="search">
 						<form action="search.do">
-							<input type="text" placeholder="검색어를 입력하세요." name="input_search">
+							<input type="text" placeholder="검색어를 입력해주세요." name="input_search">
 							<a href="" id="btn_search"><img src="../img/header/search.png"
 								alt="search"></a>
 						</form>
