@@ -10,4 +10,8 @@ public class ReplyService {
 		List<Reply> list = replyDAO.getReplyList(boardId);
 		return list;
 	}
+	
+	public void create(Reply reply) {
+		replyDAO.create(reply);
+	}
 }
