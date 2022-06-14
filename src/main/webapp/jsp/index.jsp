@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.net.URL"%>
@@ -7,11 +8,16 @@
 <%@ page import="java.io.BufferedReader"%>
 <%@ page import="java.io.InputStreamReader"%>
 
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>함께하면 가벼운 소비, N분의1</title>
+
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +27,7 @@
 <link rel=stylesheet href="../css/reset.css">
 <link rel=stylesheet href="../css/common.css?after">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <%
@@ -66,6 +73,10 @@ try {
 	System.out.println(e);
 }
 %>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <style>
 body {
@@ -74,16 +85,19 @@ body {
 </style>
 <body>
 
-	<div id="section-body"text-align:center;>
+
+	<div id="section-body" text-align:center;>
 		<%@ include file="/jsp/header.jsp"%>
 
 		<br> <br> <br> <br> <br> <br> <br>
 		<br>
 		<!-- SECTION -->
+		<section>
 		<div class="searchbody">
 
 			<div class="form_group">
-				<label>카테고리</label> <select name="category_id" id="category_id">
+				<label>카테고리</label>
+				 <select name="category_id" id="category_id">
 					<option>전체</option>
 					<c:forEach items="${clist}" var="category">
 						<option value="${category.category_id}">${category.category_name}</option>
@@ -96,67 +110,58 @@ body {
 						checked="checked">최신순 <input type="radio"
 						name="productSort" value="asc">과거순
 				</fieldset>
-			</div>
-		</div>
-		<br> <br>
-		<div class="container">
-			<div id="here">
 
-				<div class="row">
-					<ul class="list-wrapper">
+				<div id="wrap">
+					<%-- <%@ include file="/jsp/header.jsp"%> --%>
+					<jsp:include page="header.jsp"></jsp:include>
 
-						<c:forEach items="${productList}" var="productList">
-							<li>
-								<div id="product-img">
-									<span
-										id="/TeamProjectSecond/product/view.do?productId=${productList.productId}">${productList.productStatus}</span>
-									<a href=""> <!-- <img src="#" /> -->
-									</a>
-								</div>
+					<!-- SECTION -->
 
-								<div id="product-info">
-									<a
-										href="/TeamProjectSecond/product/view.do?productId=${productList.productId}"
-										id="title">${productList.productTitle}</a> <span id="price">${productList.price}원</span>
-									<%-- <span id="userid">${productList.userId}</span> --%>
-									<span id="date">${productList.reg_date}</span>
-
-								</div>
-							</li>
-						</c:forEach>
-
-					</ul>
+					
+						<div id="here"></div>
 				</div>
-			</div>
-		</div>
+				<br> <br>
+				<div class="container">
+					<div id="here">
 
-		<br> <br> <br>
+						<div class="row">
+							<ul class="list-wrapper">
 
-		<script>
-			$(function() {
+								<c:forEach items="${productList}" var="productList">
+									<li>
+										<div id="product-img">
+											<span
+												id="/TeamProjectSecond/product/view.do?productId=${productList.productId}">${productList.productStatus}</span>
+											<a href=""> <!-- <img src="#" /> -->
+											</a>
+										</div>
 
-				$.ajax({
-					url : "../listProduct.do",
-					data : {
-						"category_id" : "%",
-						"keyword" : "%",
-						"sort" : "desc"
-					},
-					type : "post",
-					success : function(responseData) {
+										<div id="product-info">
+											<a
+												href="/TeamProjectSecond/product/view.do?productId=${productList.productId}"
+												id="title">${productList.productTitle}</a> <span id="price">${productList.price}원</span>
+											<%-- <span id="userid">${productList.userId}</span> --%>
+											<span id="date">${productList.reg_date}</span>
 
-						$("#here").html(responseData);
-					}
-				});
+										</div>
+									</li>
+								</c:forEach>
 
-				$("#input_search").on("keydown", function(event) {
+							</ul>
+						</div>
+					</div>
+				</div>
 
-					if (event.keyCode == 13) {
+				<br> <br> <br>
+
+				<script>
+					$(function() {
+
 						$.ajax({
 							url : "../listProduct.do",
 							data : {
 								"category_id" : "%",
-								"keyword" : $(this).val(),
+								"keyword" : "%",
 								"sort" : "desc"
 							},
 							type : "post",
@@ -165,14 +170,36 @@ body {
 								$("#here").html(responseData);
 							}
 						});
-					}
-				});
-			});
-		</script>
+
+						$("#input_search").on("keydown", function(event) {
+
+							if (event.keyCode == 13) {
+								$.ajax({
+									url : "../listProduct.do",
+									data : {
+										"category_id" : "%",
+										"keyword" : $(this).val(),
+										"sort" : "desc"
+									},
+									type : "post",
+									success : function(responseData) {
+
+										$("#here").html(responseData);
+									}
+								});
+							}
+						});
+					});
+				</script>
 
 
-		<%@ include file="/jsp/footer.jsp"%>
-	</div>
+				<%@ include file="/jsp/footer.jsp"%>
 
+				</section>
+
+				<%-- <%@ include file="/jsp/footer.jsp"%> --%>
+				<jsp:include page="footer.jsp"></jsp:include>
+
+			</div>
 </body>
 </html>

@@ -120,8 +120,8 @@ a {
 		<p>함께하면 가벼운 소비,<br>세상의 모든 소비를 나눠보세요.</p>
 		<c:set var= "path" value="${pageContext.request.contextPath }"/>
 		<form  method="post" action="${path}/member/login">
-				<input class="input_login" type="text" name="userId" id="userId" placeholder="이메일주소를 입력하세요.">
-				<input class="input_login" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요.">
+				<input class="input_login" type="text" name="userId" id="userId" placeholder="이메일주소를 입력하세요." >
+				<input class="input_login" type="password" name="password" id="password" placeholder="비밀번호를 입력하세요." >
 				<div id="imgNaver" >
 				<!-- <input type="image" class="btn_login" alt="" src="../img/header/btnG_완성형2.png"  height=40px; > -->
                  <a href="<%=apiURL%>"><img height="50" src="../img/header/btnG_완성형2.png"/ class="btn_login"></a>

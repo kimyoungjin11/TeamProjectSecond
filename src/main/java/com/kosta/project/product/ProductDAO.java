@@ -43,14 +43,22 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 	public ArrayList<Product> selectAllProduct(String category_id, String keyword, String sort){
 
 		ArrayList<Product> productList = new ArrayList<Product>();
+		
 		Connection connection = null;
 		pst = null;
 		rs = null;
+		
 		try {
 			connection = DBUtil.getConnection();
 			if(category_id.equals("전체")) category_id = "%";
+			
+			
 			String query = "select * from tbl_product where CATEGORY_ID like '" 
 			              + category_id + "' and content like '%" + keyword + "%' order by reg_date  " + sort;
+			
+			
+			
+			
 			pst = connection.prepareStatement(query);
 			rs = pst.executeQuery();
 			
