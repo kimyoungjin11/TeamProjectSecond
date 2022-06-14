@@ -12,10 +12,8 @@ public class Product {
 	private Date reg_date;
 	private String productStatus;
 	private int joinNumber;
-	private int currentNumber;
 	private String userId;
 	private int category;
-	
 	
 	public Product() {
 		
@@ -24,7 +22,7 @@ public class Product {
 
 	public Product(int productId, String productTitle, String productContent, int wishCount,
 			       int viewCount, int price, Date reg_date,
-			String productStatus, int joinNumber,int currentNumber, String userId, int category) {
+			String productStatus, int joinNumber, String userId, int category) {
 		super();
 		this.productId = productId;
 		this.productTitle = productTitle;
@@ -35,7 +33,6 @@ public class Product {
 		this.reg_date = reg_date;
 		this.productStatus = productStatus;
 		this.joinNumber = joinNumber;
-		this.currentNumber = currentNumber;
 		this.userId = userId;
 		this.category = category;
 	}

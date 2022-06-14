@@ -58,7 +58,6 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 				int productId = rs.getInt("product_Id");
 				String productTitle = rs.getString("title");
 				String productContent = rs.getString("content");
-				int viewCount = rs.getInt("view_Count");
 				int wishCount = rs.getInt("wish_Count");
 				int price = rs.getInt("price");
 				Date reg_date = rs.getDate("reg_date");
@@ -71,7 +70,6 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 				product.setproductId(productId);
 				product.setproductTitle(productTitle);
 				product.setproductContent(productContent);
-				product.setViewCount(viewCount);
 				product.setWishCount(wishCount);
 				product.setPrice(price);
 				product.setReg_date(reg_date);
@@ -175,9 +173,8 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 			String query = SQL_INSERT_PRODUCT_Images;
 			
 			try {
-				
-				conn = DBUtil.getConnection();
 				conn.setAutoCommit(false); //리스트가 올라갈 때까지 자동커밋 막아놓기
+				conn = DBUtil.getConnection();
 				pst = conn.prepareStatement(query);
 				for(String fname :imageList) {
 					pst.setString(1, fname);
@@ -225,7 +222,6 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 					int productId = rs.getInt("product_Id");
 					String productTitle = rs.getString("title");
 					String productContent = rs.getString("content");
-					int viewCount = rs.getInt("view_Count");
 					int wishCount = rs.getInt("wish_Count");
 					int price = rs.getInt("price");
 					Date reg_date = rs.getDate("reg_date");
@@ -237,7 +233,6 @@ static final String SQL_SELECT_PRODUCT = "SELECT * FROM TBL_PRODUCT tp WHERE tp.
 					viewProduct.setproductId(productId);
 					viewProduct.setproductTitle(productTitle);
 					viewProduct.setproductContent(productContent);
-					viewProduct.setViewCount(viewCount);
 					viewProduct.setWishCount(wishCount);
 					viewProduct.setPrice(price);
 					viewProduct.setReg_date(reg_date);

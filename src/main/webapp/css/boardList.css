@@ -81,8 +81,7 @@
 	margin:5px 0 0 0;
 	font-weight:bold;
 }
-
-
-.godd{
-	float:right;
+.container .list-wrapper li #product-info #price:last-child{
+	font-size:15px;
+	
 }
